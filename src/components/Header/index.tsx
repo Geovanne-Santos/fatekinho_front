@@ -1,8 +1,11 @@
-export function Header() {
+import { BurgerIcon } from "../../utils/BurguerIcon";
+
+export function Header({isOpen, setIsOpen}: any) {
+  
   return (
     <header className="w-screen flex justify-between py-5 px-20 border-b-4 border-white-500">
       <div className="flex items-center gap-10">
-        <span>icone foda</span>
+        <BurgerIcon isOpen={isOpen} setIsOpen={setIsOpen}/>
         <h1 className="text-2xl font-bold">FATEKINHO</h1>
       </div>  
 
