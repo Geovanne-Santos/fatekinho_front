@@ -9,9 +9,9 @@ export function Header({isOpen, setIsOpen}: any) {
         <h1 className="text-2xl font-bold">FATEKINHO</h1>
       </div>  
 
-      <div className="flex gap-10 bg-[#090F15] p-4 rounded">
-        <button>Cadastrar</button>
-        <button>Entrar</button>
+      <div className="flex gap-4 bg-[#090F15] p-2 rounded">
+        <button className="py-1 px-4 rounded bg-[#FAF753] text-[#1E1E1E]">Cadastrar</button>
+        <button className="py-1 px-4 rounded">Entrar</button>
       </div>
     </header>
   ) 

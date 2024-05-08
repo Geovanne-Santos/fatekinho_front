@@ -1,7 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Sidebar({ isOpen }: { isOpen: boolean }) {
   const [hoveredIndex, setHoveredIndex] = useState(-1);
+  const [showItems, setShowItems] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      const timeout = setTimeout(() => {
+        setShowItems(true);
+      }, 200);
+
+      return () => clearTimeout(timeout);
+    } else {
+      setShowItems(false);
+    }
+  }, [isOpen]);
 
   const handleMouseEnter = (index: number) => {
     setHoveredIndex(index);
@@ -27,28 +40,23 @@ export function Sidebar({ isOpen }: { isOpen: boolean }) {
         isOpen ? "w-64" : "w-0"
       }`}
     >
-      <div className="px-12 py-16">
-        {isOpen && (
-          <ul className="flex flex-col gap-6 text-center">
-            {sidebarItems.map((item, index) => (
-              <li
-                key={index}
-                className={`px-4 py-2 transition ease-in-out duration-200 ${
-                  hoveredIndex === index
-                    ? "bg-[#FAF753] text-[#1E1E1E] cursor-pointer"
-                    : ""
-                }`}
-                onMouseEnter={() => handleMouseEnter(index)}
-                onMouseLeave={handleMouseLeave}
-                style={{
-                  transitionDelay: isOpen ? `${index * 300}ms` : "0ms"
-                }}
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        )}
+      <div className="w-full flex justify-center py-16">
+        <ul className="flex flex-col gap-6 text-center w-10/12">
+          {sidebarItems.map((item, index) => (
+            <li
+              key={index}
+              className={`px-4 py-2 transition ease-in-out duration-200 rounded ${
+                hoveredIndex === index
+                  ? "bg-[#FAF753] text-[#1E1E1E] cursor-pointer"
+                  : ""
+              } ${showItems ? "block" : "hidden"}`}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
     </aside>
   );
