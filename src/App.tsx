@@ -2,18 +2,32 @@ import { Outlet } from "react-router-dom";
 import "./App.css";
 import { Header } from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Modal } from "./components/Modal";
 
 export function App() {
   const [isOpen, setIsOpen] = useState(true);
   const [isModalActive, setModalActive] = useState(false);
+  const timeoutRef = useRef(null);
 
-  //setTimeout(() => setModalActive(true), 3000);
+  useEffect(() => {
+    timeoutRef.current = setTimeout(() => setModalActive(true), 3000);
+    return () => clearTimeout(timeoutRef);
+  }, []);
+
+  const handleModalDesactive = () => {
+    setModalActive(false);
+    clearTimeout(timeoutRef.current);
+  };
 
   return (
     <>
-      {isModalActive && <Modal setModalActive={setModalActive} />}
+      {isModalActive && (
+        <Modal
+          setModalActive={setModalActive}
+          handleModalDesactive={handleModalDesactive}
+        />
+      )}
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
       <main className="flex h-[calc(100vh_-_100px)]">
         <Sidebar isOpen={isOpen} />
