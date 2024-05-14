@@ -1,11 +1,16 @@
+import Football from "../../assets/footbal.png";
+
 export function Home() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Minha página Home</h1>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis aliquam harum officiis asperiores ab
-        voluptatem nisi pariatur maxime a non?
-      </p>
-    </div>
+    <section className="px-12 py-20 w-full">
+      <div className="flex flex-col items-center justify-center w-4/6 m-auto">
+        <img src={Football} alt="Football imagem" className="w-full mb-6" />
+        <div className="grid grid-cols-4 gap-8 w-full">
+          {Array(8).fill(0).map((_, index) => (
+            <div key={index} className="bg-[#D9D9D9] h-40"></div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
