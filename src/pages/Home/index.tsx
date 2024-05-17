@@ -2,7 +2,7 @@ import Football from "../../assets/footbal.png";
 
 export function Home() {
   return (
-    <section className="px-12 py-20 w-full">
+    <section className="px-12 py-20 w-full bg-coins">
       <div className="flex flex-col items-center justify-center w-4/6 m-auto">
         <img src={Football} alt="Football imagem" className="w-full mb-6" />
         <div className="grid grid-cols-4 gap-8 w-full">
