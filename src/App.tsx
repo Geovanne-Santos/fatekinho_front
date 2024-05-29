@@ -8,7 +8,7 @@ import { Modal } from "./components/Modal";
 export function App() {
   const [isOpen, setIsOpen] = useState(true);
   const [isModalActive, setModalActive] = useState(false);
-  const timeoutRef = useRef(null);
+  const timeoutRef: NodeJS.Timeout = useRef(null);
 
   useEffect(() => {
     timeoutRef.current = setTimeout(() => setModalActive(true), 3000);
@@ -31,7 +31,7 @@ export function App() {
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
       <main className="flex h-[calc(100vh_-_100px)]">
         <Sidebar isOpen={isOpen} />
-        <div className="flex-grow flex justify-center w-full">
+        <div className={`flex justify-center w-full`}>
           <Outlet />
         </div>
       </main>

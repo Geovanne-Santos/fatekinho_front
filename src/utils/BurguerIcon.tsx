@@ -1,4 +1,4 @@
-export function BurgerIcon ({isOpen, setIsOpen}: any) {
+/* export function BurgerIcon ({isOpen, setIsOpen}: any) {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -41,4 +41,4 @@ export function BurgerIcon ({isOpen, setIsOpen}: any) {
       </button>
     </div>
   );
-};
+}; */
