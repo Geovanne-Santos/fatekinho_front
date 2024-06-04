@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function Sidebar({ isOpen }: { isOpen: boolean }) {
   const [hoveredIndex, setHoveredIndex] = useState(-1); // Estado para controlar o índice do item atualmente com o cursor
@@ -15,31 +16,33 @@ export function Sidebar({ isOpen }: { isOpen: boolean }) {
 
   // Lista de itens da barra lateral
   const sidebarItems = [
-    "RINHA DE GALO",
-    "BLACKJACK",
-    "ROLETA",
-    "FUGA DAS GALINHAS",
-    "JACKPOT",
-    "MINI BLAZE",
-    "JOGO DO BICHO"
+    { name: "RINHA DE GALO", link: "" },
+    { name: "BLACKJACK", link: "" },
+    { name: "ROLETA", link: "" },
+    { name: "FUGA DAS GALINHAS", link: "" },
+    { name: "JACKPOT", link: "" },
+    { name: "MINI BLAZE", link: "https://brendon3578.github.io/minesweeper-game-bet/src/index.html"},
+    { name: "JOGO DO BICHO", link: "" },
   ];
 
   return (
-    <aside className={`h-full bg-[#090F15] transition-transform duration-300 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+    <aside
+      className={`h-full bg-[#090F15] transition-transform duration-300 transform ${
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      }`}
+    >
       <div className="px-8 py-20">
         <ul className="flex flex-col gap-6 text-center">
           {sidebarItems.map((item, index) => (
             <li
               key={index}
               className={`px-4 py-2 transition ease-in-out duration-300 cursor-pointer rounded ${
-                hoveredIndex === index
-                  ? "bg-[#FAF755] text-[#1E1E1E]"
-                  : ""
+                hoveredIndex === index ? "bg-[#FAF755] text-[#1E1E1E]" : ""
               }`}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
             >
-              {item}
+              <Link to={`/game/${sidebarItems[index]}`}>{item.name}</Link>
             </li>
           ))}
         </ul>
