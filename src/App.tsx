@@ -12,7 +12,7 @@ export function App() {
 
   useEffect(() => {
     timeoutRef.current = setTimeout(() => setModalActive(true), 3000);
-    return () => clearTimeout(timeoutRef);
+    return () => clearTimeout(timeoutRef.current);
   }, []);
 
   const handleModalDesactive = () => {
@@ -29,9 +29,9 @@ export function App() {
         />
       )}
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-      <main className="flex h-[calc(100vh_-_100px)]">
+      <main className={`flex ${isOpen ? "w-70" : "w-full"}`}>
         <Sidebar isOpen={isOpen} />
-        <div className={`flex justify-center w-full`}>
+        <div className="flex justify-center w-full">
           <Outlet />
         </div>
       </main>
