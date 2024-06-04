@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import Fatekinho from "../../assets/Fatekinho.png";
+import { BurgerIcon } from "../../utils/BurguerIcon";
 
 export function Header({ isOpen, setIsOpen }: any) {
   return (
-    <header className="w-screen flex justify-between py-5 px-20 border-b-4 border-white-500">
+    <header className="w-screen flex justify-between py-5 px-20 border-b-4 border-white-500 sticky z-10">
       <div className="flex items-center gap-10">
+        <BurgerIcon isOpen={isOpen} setIsOpen={setIsOpen} />
         <h1 className="text-2xl font-bold">
           <Link to={"/"}>
-            <img
-              src={Fatekinho}
-            />
+            <img src={Fatekinho} />
           </Link>
         </h1>
       </div>
