@@ -1,4 +1,11 @@
-export function BurgerIcon ({isOpen, setIsOpen}: any) {
+import { useLocation } from "react-router-dom";
+
+export function BurgerIcon({ isOpen, setIsOpen }: any) {
+  const location = useLocation();
+
+  if (location.pathname === "/login") {
+    return null;
+  }
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -41,4 +48,4 @@ export function BurgerIcon ({isOpen, setIsOpen}: any) {
       </button>
     </div>
   );
-};
+}
