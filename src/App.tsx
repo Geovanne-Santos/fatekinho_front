@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import "./App.css";
 import { Header } from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
@@ -14,14 +14,6 @@ export function App() {
     timeoutRef.current = setTimeout(() => setModalActive(true), 3000);
     return () => clearTimeout(timeoutRef.current);
   }, []);
-
-  const location = useLocation();
-
-  useEffect(() => {
-    if (location.pathname === "/login" || location.pathname === "/register") {
-      setIsOpen(false);
-    }
-  }, [location]);
 
   const handleModalDesactive = () => {
     setModalActive(false);

@@ -4,6 +4,9 @@ import { App } from "./App";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { GamePlayer } from "./pages/GamePlayer";
+import { Loteria } from "./pages/Loteria";
+import { LoteriaConcurso } from "./pages/Loteria/LoteriaConcurso";
+import { Concurso } from "./pages/Loteria/Concurso";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +28,18 @@ export const router = createBrowserRouter([
       {
         path: "/game/:gameLink",
         element: <GamePlayer />,
+      },
+      {
+        path: "/game/loterias",
+        element: <Loteria />,
+      },
+      {
+        path: "/game/loterias/:concurso",
+        element: <LoteriaConcurso />,
+      },
+      {
+        path: "/game/loterias/:concurso/:id",
+        element: <Concurso />,
       },
     ],
   },

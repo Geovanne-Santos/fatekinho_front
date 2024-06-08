@@ -23,6 +23,7 @@ export function Sidebar({ isOpen }: { isOpen: boolean }) {
     { name: "JACKPOT", link: "" },
     { name: "MINI BLAZE", link: "https://brendon3578.github.io/minesweeper-game-bet/src/index.html"},
     { name: "JOGO DO BICHO", link: "" },
+    { name: "LOTERIAS", link: "loterias" },
   ];
 
   return (
@@ -42,7 +43,7 @@ export function Sidebar({ isOpen }: { isOpen: boolean }) {
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
             >
-              <Link to={`/game/${sidebarItems[index]}`}>{item.name}</Link>
+              <Link to={`/game/${item.link}`}>{item.name}</Link>
             </li>
           ))}
         </ul>
