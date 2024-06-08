@@ -34,7 +34,7 @@ export function Concurso() {
                         <div className="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4 rtl:space-x-reverse mb-8">
                             {data.dezenas?.map(d => {
                                 return (
-                                    <LoteriaDezena tamanho={{ x: 2.5, y: 2 }} dezena={d} />
+                                    <LoteriaDezena tamanho={{ x: 3, y: 2 }} dezena={d} />
                                 )
                             })}
                         </div>
