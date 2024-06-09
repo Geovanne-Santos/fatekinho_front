@@ -1,0 +1,265 @@
+* {
+  box-sizing: border-box; /* Adiciona esta linha para incluir preenchimento e borda na largura e altura */
+}
+
+body {
+  font-family: "Titillium Web", sans-serif;
+  color: white;
+  display: flex;
+  justify-content: center; /* Centraliza verticalmente todo o conteúdo */
+  align-items: center;
+  height: 100vh; /* Alterado para 100vh para preencher toda a altura da tela */
+  margin: 0;
+}
+h1 {
+  padding-left: 10px;
+  font-size: 1em; /* Tamanho da fonte desejado */
+}
+h2 {
+  text-align: center;
+}
+
+.menu-lateral {
+  position: relative;
+  height: 100%;
+  width: 35%;
+  background: #090f15;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu-lateral .input-container {
+  top:15%;
+  margin: 10px;
+  height: 7%;
+  width: 97%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-container:after {
+  position: fixed;
+  left: 1.5%;
+  top: 12.1%;
+  content: 'R$';
+}
+
+.menu-lateral .input-container .btn_add {
+  background: #2d3035;
+  color: white;
+  height: 100%;
+  width: 10%;
+  border: 0px;
+  border-radius: 10%;
+  margin: 2px;
+}
+
+
+
+
+
+.menu-lateral #entrada {
+  height: 100%;
+  width: 100%;
+  background: #2d3035;
+  color: white;
+  font-size: 1em;
+  padding-left: 7%;
+  margin: 2px;
+  border: none; /* Removendo a borda padrão */
+  border-radius: 5px; /* Adicionando borda arredondada */
+}
+
+
+.menu-lateral .btn_container {
+  display: flex;
+  height: 10%;
+  width: 100%;
+}
+
+.menu-lateral .btn_container .aposta {
+  flex: 1;
+  margin: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.5em;
+  border: 0px;
+}
+
+.preto {
+  background: #2d3035;
+  color: white;
+}
+
+.amarelo {
+  background: #faf755;
+  color: #2d3035;
+}
+
+.coringa {
+  background: #ed1836;
+  color: white;
+}
+.container_colunas {
+  display: flex;
+}
+
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+}
+
+.btn_par,
+.btn_impar {
+  flex: 1; /* Ocupa todo o espaço disponível na coluna */
+  margin: 3px; /* Adicione alguma margem entre os botões */
+  padding: 10px; /* Adicione algum preenchimento */
+  border: 0px;
+  border-radius: 5px;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1em; /* Reduza o tamanho da fonte */
+}
+
+.btn_par {
+  background: #faf755;
+  color: #2d3035;
+}
+
+.btn_impar {
+  background: #2d3035;
+  color: white;
+}
+
+.jogo {
+  position: relative;
+  height: 100%;
+  width: 65%;
+  background: #0f1923;
+  display: flex;
+  justify-content: center;
+}
+
+.saldo{
+  width: 10%;
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 3px solid white;
+  text-align: center;
+  align-content: center;
+}
+
+#resultado {
+  position: absolute;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 2.5em;
+  justify-content: center;
+  color: white;
+  transform: translate(-50%, 0%);
+  z-index: 1;
+  top: 10%; /* Mova o #resultado para cima */
+  left: 50%;
+}
+
+#ganho {
+  position: absolute;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 2.5em;
+  justify-content: center;
+  color: white;
+  transform: translate(-50%, 0%);
+  z-index: 1;
+  bottom: 10%; /* Mova o #resultado para cima */
+  left: 50%;
+}
+
+.carrosel {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carrosel .seta {
+  width: 3px;
+  background: grey;
+  left: 53%;
+  height: 100px;
+  transform: translate(-50%, 0%);
+  position: absolute;
+  z-index: 1;
+}
+
+.carrosel .container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.carrosel .container .linha {
+  position: relative;
+  display: flex;
+}
+
+.carrosel .container .linha .cartao {
+  width: 75px;
+  height: 75px;
+  margin: 3px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+}
+
+.cartao.vermelho {
+  background: #ed1836;
+  color: white;
+}
+
+.cartao.preto {
+  background: #2d3035;
+  color: white;
+}
+
+.cartao.amarelo {
+  background: #faf755;
+  color: #1e1e1e;
+}
+
+.cartao.vermelho.borderVerde{
+  border: 5px solid lawngreen;
+}
+.cartao.amarelo.borderVerde{
+  border: 5px solid lawngreen;
+}
+
+.borderVerde{
+  border: 5px solid white;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%{
+    border-color: greenyellow;
+  }
+  50%{
+    border-color: lightgreen;
+  }
+  100%{
+    border-color: white;
+  }
+
+}
+
