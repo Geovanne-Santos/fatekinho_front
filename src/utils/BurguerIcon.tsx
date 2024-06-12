@@ -4,6 +4,7 @@ export function BurgerIcon({ isOpen, setIsOpen }: any) {
   const location = useLocation();
 
   if (location.pathname === "/login" || location.pathname === "/register") {
+    setIsOpen(false)
     return null;
   }
 

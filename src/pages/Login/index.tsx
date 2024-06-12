@@ -35,7 +35,7 @@ export function Login() {
   return (
     <section className="flex justify-center items-center w-full h-full bg-coins">
       <div
-        className="flex flex-col items-center justify-center w-2/5 h-3/6 bg-[#FFFFFF] rounded-3xl shadow-2xl"
+        className="flex flex-col items-center justify-center w-2/5 h-3/6 bg-[#FFFFFF] rounded-3xl shadow-2xl border-8 border-[#FAF755]"
         style={{
           backgroundImage: `url(${Car})`,
           backgroundPosition: "center",
