@@ -4,7 +4,7 @@ import { BurgerIcon } from "../../utils/BurguerIcon";
 
 export function Header({ isOpen, setIsOpen }: any) {
   return (
-    <header className="w-screen flex justify-between py-5 px-20 border-b-4 border-white-500 sticky z-10 bg-[#0f1923]">
+    <header className="w-screen flex justify-between py-5 px-20 border-b-4 border-white-500 fixed z-10 bg-[#0f1923]">
       <div className="flex items-center gap-10">
         <BurgerIcon isOpen={isOpen} setIsOpen={setIsOpen} />
         <h1 className="text-2xl font-bold">

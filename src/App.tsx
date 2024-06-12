@@ -31,8 +31,8 @@ export function App() {
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className="flex z-1">
         <Sidebar isOpen={isOpen} />
-        <main className={`flex-grow`}>
-          <div className="flex justify-center w-full">
+        <main className={`flex-grow h-dvh`}>
+          <div className="flex justify-center items-center w-full h-full">
             <Outlet />
           </div>
         </main>
