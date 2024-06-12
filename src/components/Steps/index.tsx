@@ -1,24 +1,24 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { number, object, string } from "yup";
-import 
+import { Step1 } from "./Step1";
+import { Step2 } from "./Step2";
+import { Step3 } from "./Step3";
 
-
-
-function getStepContent(step) {
-    switch (step) {
-      case 0:
-        return <Step1 />;
-      case 1:
-        return <Step2 />;
-      case 2:
-        return <Step3 />;
-      case 3:
-      default:
-        return "Unknown step";
-    }
+function getStepContent(step: number) {
+  switch (step) {
+    case 0:
+      return <Step1 />;
+    case 1:
+      return <Step2 />;
+    case 2:
+      return <Step3 />;
+    case 3:
+    default:
+      return "Unknown step";
   }
+}
 
 export function Steps() {
   const [activeStep, setActiveStep] = useState(0);
@@ -56,16 +56,18 @@ export function Steps() {
   ];
 
   const currentSchema = validationSchema[activeStep];
-  const { handleSubmit, reset, trigger } = useForm({
+  const methods = useForm({
     shouldUnregister: false,
-    defaultValues,
     resolver: yupResolver(currentSchema),
     mode: "onChange",
   });
 
+  const { handleSubmit, reset, trigger } = methods;
+
   const handleNext = async () => {
     const isStepValid = await trigger();
     if (isStepValid) setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    console.log(activeStep);
   };
 
   const handleBack = async () =>
@@ -76,5 +78,23 @@ export function Steps() {
     reset();
   };
 
-  return <></>;
+  return (
+    <>
+      <div>{getStepContent(activeStep)}</div>
+
+      <FormProvider {...methods}>
+        <button disabled={activeStep === 0} onClick={handleBack} className="">
+          Voltar
+        </button>
+        {activeStep === steps.length - 1 && (
+          <button onClick={handleSubmit(onSubmit)}>Avancar</button>
+        )}
+        {activeStep !== steps.length - 1 && (
+          <button onClick={handleNext}>Avancar</button>
+        )}
+
+        <button></button>
+      </FormProvider>
+    </>
+  );
 }

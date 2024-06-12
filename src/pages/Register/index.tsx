@@ -1,7 +1,9 @@
+import { Steps } from "../../components/Steps";
+
 export function Register() {
   return (
     <section>
-      <p>Register</p>
+      <Steps />
     </section>
   );
 }
