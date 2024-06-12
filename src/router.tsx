@@ -10,6 +10,8 @@ import { Concurso } from "./pages/Loteria/Concurso";
 import { Roleta } from "./pages/Roleta";
 import { CacaNiquel } from "./pages/CacaNiquel";
 
+import { Aviador } from "./pages/AviadorGame";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -50,6 +52,10 @@ export const router = createBrowserRouter([
       {
         path: "/game/caca-niquel",
         element: <CacaNiquel />,
+      },
+      {
+        path: "/game/aviador",
+        element: <Aviador />,
       },
     ],
   },
