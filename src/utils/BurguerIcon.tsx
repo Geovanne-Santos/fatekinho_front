@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 export function BurgerIcon({ isOpen, setIsOpen }: any) {
   const location = useLocation();
 
-  if (location.pathname === "/login") {
+  if (location.pathname === "/login" || location.pathname === "/register") {
     return null;
   }
 
