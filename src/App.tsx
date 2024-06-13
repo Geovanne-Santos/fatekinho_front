@@ -29,9 +29,9 @@ export function App() {
         />
       )}
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-      <div className="flex z-1">
+      <div>
         <Sidebar isOpen={isOpen} />
-        <main className={`flex-grow`}>
+        <main className={`flex-grow`} style={{zIndex: 10000000000000}}>
           <div className="flex justify-center w-full">
             <Outlet />
           </div>
