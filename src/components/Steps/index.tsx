@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { number, object, string } from "yup";
+import { number, object, ref, string } from "yup";
 import { Step1 } from "./Step1";
 import { Step2 } from "./Step2";
 import { Step3 } from "./Step3";
@@ -9,12 +9,14 @@ import { Step3 } from "./Step3";
 function getStepContent(step: number) {
   switch (step) {
     case 0:
+      console.log(step);
       return <Step1 />;
     case 1:
+      console.log(step);
       return <Step2 />;
     case 2:
+      console.log(step);
       return <Step3 />;
-    case 3:
     default:
       return "Unknown step";
   }
@@ -32,26 +34,26 @@ export function Steps() {
 
   const validationSchema = [
     object().shape({
-      name: string().required(),
-      cpf: string().required(),
-      gender: string().required(),
-      cep: string().required(),
-      rua: string().required(),
-      number: number().required(),
+      name: string().required("Por favor, digite seu nome."),
+      cpf: string().required("Por favor, digite seu CPF."),
+      gender: string().required("Por favor, selecione seu gênero."),
+      cep: string().required("Por favor, digite seu CEP."),
+      rua: string().required("Por favor, digite sua rua."),
+      number: number().required("Por favor, digite o número da sua residência."),
       complemento: string(),
-      bairro: string().required(),
-      city: string().required(),
-      uf: string().required(),
+      bairro: string().required("Por favor, digite seu bairro."),
+      city: string().required("Por favor, digite sua cidade."),
+      uf: string().required("Por favor, digite sua UF."),
     }),
     object().shape({
-      email: string().email().required(),
-      password: string(),
-      confirmPassword: string(),
+      email: string().email("Por favor, digite um e-mail válido.").required("Por favor, digite seu e-mail."),
+      password: string().required("Por favor, digite sua senha."),
+      confirmPassword: string().oneOf([ref("password"), "As senhas precisam ser iguais."], "As senhas precisam ser iguais.").required("Por favor, confirme sua senha."),
     }),
     object().shape({
-      numberCreditCard: number(),
-      validateData: string(),
-      cvv: number(),
+      numberCreditCard: number().required("Por favor, digite o número do seu cartão de crédito."),
+      validateData: string().required("Por favor, digite a data de validade do seu cartão de crédito."),
+      cvv: number().required("Por favor, digite o código CVV do seu cartão de crédito."),
     }),
   ];
 
@@ -66,8 +68,10 @@ export function Steps() {
 
   const handleNext = async () => {
     const isStepValid = await trigger();
+    if (!isStepValid) {
+      console.log('Erros de validacao:', methods.formState.errors);
+    }
     if (isStepValid) setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    console.log(activeStep);
   };
 
   const handleBack = async () =>
@@ -80,9 +84,9 @@ export function Steps() {
 
   return (
     <>
-      <div>{getStepContent(activeStep)}</div>
-
       <FormProvider {...methods}>
+        <div>{getStepContent(activeStep)}</div>
+
         <button disabled={activeStep === 0} onClick={handleBack} className="">
           Voltar
         </button>
@@ -92,8 +96,6 @@ export function Steps() {
         {activeStep !== steps.length - 1 && (
           <button onClick={handleNext}>Avancar</button>
         )}
-
-        <button></button>
       </FormProvider>
     </>
   );

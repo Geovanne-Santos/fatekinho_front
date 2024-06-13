@@ -1,12 +1,14 @@
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export function BurgerIcon({ isOpen, setIsOpen }: any) {
   const location = useLocation();
 
-  if (location.pathname === "/login" || location.pathname === "/register") {
-    setIsOpen(false)
-    return null;
-  }
+  useEffect(() => {
+    if (location.pathname === "/login" || location.pathname === "/register") {
+      setIsOpen(false);
+    }
+  }, [location]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
