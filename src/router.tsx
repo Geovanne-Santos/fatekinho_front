@@ -11,6 +11,7 @@ import { Roleta } from "./pages/Roleta";
 import { CacaNiquel } from "./pages/CacaNiquel";
 
 import { Aviador } from "./pages/AviadorGame";
+import { JogoBicho } from "./pages/JogoBicho";
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ export const router = createBrowserRouter([
       {
         path: "/game/aviador",
         element: <Aviador />,
+      },
+      {
+        path: "/game/jogo-bicho",
+        element: <JogoBicho />,
       },
     ],
   },

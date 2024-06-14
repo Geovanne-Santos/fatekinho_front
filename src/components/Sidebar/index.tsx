@@ -22,7 +22,7 @@ export function Sidebar({ isOpen }: { isOpen: boolean }) {
     { name: "FUGA DAS GALINHAS", link: "" },
     { name: "JACKPOT", link: "" },
     { name: "MINI BLAZE", link: "https://brendon3578.github.io/minesweeper-game-bet/src/index.html"},
-    { name: "JOGO DO BICHO", link: "" },
+    { name: "JOGO DO BICHO", link: "jogo-bicho" },
     { name: "LOTERIAS", link: "loterias" },
   ];
 

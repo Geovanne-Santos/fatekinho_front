@@ -1,78 +1,5 @@
-import $ from 'jquery';
-$(document).ready(function (){
-    iniciar_roleta();
-    $("#resultado").text("")
-    getIDinfo();
-    let random_number = 0
-
-    $(".btn_add.um").on("click",function (){
-        $("#bet_valor").val( 1);
-    });
-    $(".btn_add.dez").on("click",function (){
-        $("#bet_valor").val(10);
-    });
-    $(".btn_add.cem").on("click",function (){
-        $("#bet_valor").val( 100);
-    });
-    $(".btn_add.all").on("click",function (){
-        let saldo = $("#user_saldo").val();
-        $("#bet_valor").val(saldo);
-    });
-
-    $(".aposta.amarelo").on("click", async function(){
-        let aposta = $("#bet_valor").val();
-        let saldo = $("#user_saldo").val();
-        let check = await checkCoins(saldo,aposta)
-        if (check === true) {
-            random_number = Math.floor(Math.random()*36);
-            rodar("amarelo",aposta,random_number)
-        }else{
-            return;
-        }
-    });
-    $(".aposta.vermelho").on("click", async function(){
-        let aposta = $("#bet_valor").val();
-        let saldo = $("#user_saldo").val();
-        let check = await checkCoins(saldo,aposta)
-        if (check === true) {
-            random_number = Math.floor(Math.random()*36);
-            rodar("vermelho",aposta,random_number)
-        }else{
-            return;
-        }
-    });
-    $(".aposta.coringa").on("click", async function(){
-        let aposta = $("#bet_valor").val();
-        let saldo = $("#user_saldo").val();
-        let check = await checkCoins(saldo,aposta)
-        if (check === true) {
-            random_number = Math.floor(Math.random()*36);
-            rodar("coringa",aposta,random_number)
-        }else{
-            return;
-        }
-    });
-    $(".btn_par,.btn_impar").on("click",async function () {
-        let aposta = $("#bet_valor").val();
-        let saldo = $("#user_saldo").val();
-        let check = await checkCoins(saldo,aposta)
-        let numero = $(this).text();
-        if (check === true) {
-            random_number = Math.floor(Math.random()*36);
-            rodar(numero,aposta,random_number)
-        }else{
-            return;
-        }
-    })
-
-
-
-});
-
-
-
 export function iniciar_roleta() {
-    let $container = $(".container"),
+    let $container = $(".container");
         linha = "";
     linha += "<div class='linha'>";
     linha += "  <div class='cartao coringa'>0</div>";
@@ -118,6 +45,7 @@ export function iniciar_roleta() {
     for (let x = 0; x < 100; x++) {
         $container.append(linha);
     }
+    return(<></>)
 }
 
 
