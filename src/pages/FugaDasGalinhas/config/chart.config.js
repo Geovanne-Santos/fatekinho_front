@@ -26,7 +26,7 @@ export function buildChartConfiguration(dps) {
       gridThickness: 0,
       tickLength: 0,
       labelFontSize: 20,
-      labelFormatter: (e) => ".",
+      labelFormatter: () => ".",
     },
     axisY: {
       lineColor: "#4b5563", //gray 600
@@ -36,7 +36,7 @@ export function buildChartConfiguration(dps) {
       margin: 10,
       lineThickness: 1,
       labelFontSize: 20,
-      labelFormatter: (e) => ".",
+      labelFormatter: () => ".",
     },
     data: [
       {

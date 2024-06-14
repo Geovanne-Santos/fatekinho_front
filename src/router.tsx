@@ -9,8 +9,7 @@ import { LoteriaConcurso } from "./pages/Loteria/LoteriaConcurso";
 import { Concurso } from "./pages/Loteria/Concurso";
 import { Roleta } from "./pages/Roleta";
 import { CacaNiquel } from "./pages/CacaNiquel";
-
-import { Aviador } from "./pages/AviadorGame";
+import { AviatorGame } from "./pages/FugaDasGalinhas/Game/AviatorGame";
 
 export const router = createBrowserRouter([
   {
@@ -54,8 +53,8 @@ export const router = createBrowserRouter([
         element: <CacaNiquel />,
       },
       {
-        path: "/game/aviador",
-        element: <Aviador />,
+        path: "/game/fuga-das-galinhas",
+        element: <AviatorGame />,
       },
     ],
   },

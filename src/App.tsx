@@ -7,31 +7,31 @@ import { Modal } from "./components/Modal";
 
 export function App() {
   const [isOpen, setIsOpen] = useState(true);
-  const [isModalActive, setModalActive] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout>(null);
+  // const [isModalActive, setModalActive] = useState(false);
+  // const timeoutRef = useRef<NodeJS.Timeout>(null);
 
-  useEffect(() => {
-    timeoutRef.current = setTimeout(() => setModalActive(true), 3000);
-    return () => clearTimeout(timeoutRef.current);
-  }, []);
+  // useEffect(() => {
+  //   timeoutRef.current = setTimeout(() => setModalActive(true), 3000);
+  //   return () => clearTimeout(timeoutRef.current);
+  // }, []);
 
-  const handleModalDesactive = () => {
-    setModalActive(false);
-    clearTimeout(timeoutRef.current);
-  };
+  // const handleModalDesactive = () => {
+  //   setModalActive(false);
+  //   clearTimeout(timeoutRef.current);
+  // };
 
   return (
     <>
-      {isModalActive && (
+      {/* {isModalActive && (
         <Modal
           setModalActive={setModalActive}
           handleModalDesactive={handleModalDesactive}
         />
-      )}
+      )} */}
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
       <div>
         <Sidebar isOpen={isOpen} />
-        <main className={`flex-grow`} style={{zIndex: 10000000000000}}>
+        <main className={`flex-grow`} style={{ zIndex: 10000000000000 }}>
           <div className="flex justify-center w-full">
             <Outlet />
           </div>
