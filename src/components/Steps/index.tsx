@@ -5,6 +5,7 @@ import { number, object, ref, string } from "yup";
 import { Step1 } from "./Step1";
 import { Step2 } from "./Step2";
 import { Step3 } from "./Step3";
+import Car from "../../assets/car.png";
 
 function getStepContent(step: number) {
   switch (step) {
@@ -39,21 +40,36 @@ export function Steps() {
       gender: string().required("Por favor, selecione seu gênero."),
       cep: string().required("Por favor, digite seu CEP."),
       rua: string().required("Por favor, digite sua rua."),
-      number: number().required("Por favor, digite o número da sua residência."),
+      number: number().required(
+        "Por favor, digite o número da sua residência."
+      ),
       complemento: string(),
       bairro: string().required("Por favor, digite seu bairro."),
       city: string().required("Por favor, digite sua cidade."),
       uf: string().required("Por favor, digite sua UF."),
     }),
     object().shape({
-      email: string().email("Por favor, digite um e-mail válido.").required("Por favor, digite seu e-mail."),
+      email: string()
+        .email("Por favor, digite um e-mail válido.")
+        .required("Por favor, digite seu e-mail."),
       password: string().required("Por favor, digite sua senha."),
-      confirmPassword: string().oneOf([ref("password"), "As senhas precisam ser iguais."], "As senhas precisam ser iguais.").required("Por favor, confirme sua senha."),
+      confirmPassword: string()
+        .oneOf(
+          [ref("password"), "As senhas precisam ser iguais."],
+          "As senhas precisam ser iguais."
+        )
+        .required("Por favor, confirme sua senha."),
     }),
     object().shape({
-      numberCreditCard: number().required("Por favor, digite o número do seu cartão de crédito."),
-      validateData: string().required("Por favor, digite a data de validade do seu cartão de crédito."),
-      cvv: number().required("Por favor, digite o código CVV do seu cartão de crédito."),
+      numberCreditCard: number().required(
+        "Por favor, digite o número do seu cartão de crédito."
+      ),
+      validateData: string().required(
+        "Por favor, digite a data de validade do seu cartão de crédito."
+      ),
+      cvv: number().required(
+        "Por favor, digite o código CVV do seu cartão de crédito."
+      ),
     }),
   ];
 
@@ -69,7 +85,7 @@ export function Steps() {
   const handleNext = async () => {
     const isStepValid = await trigger();
     if (!isStepValid) {
-      console.log('Erros de validacao:', methods.formState.errors);
+      console.log("Erros de validacao:", methods.formState.errors);
     }
     if (isStepValid) setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -83,20 +99,30 @@ export function Steps() {
   };
 
   return (
-    <>
-      <FormProvider {...methods}>
-        <div>{getStepContent(activeStep)}</div>
+    <FormProvider {...methods}>
+      <div
+        className="flex flex-col items-center justify-center w-3/6 h-4/6 bg-[#FFFFFF] rounded-3xl shadow-2xl border-8 border-[#FAF755] text-black"
+        style={{
+          backgroundImage: `url(${Car})`,
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <h1 className="text-center text-[#ED1836] text-4xl font-bold mb-4">
+          DADOS PESSOAIS
+        </h1>
+        <div className="w-4/5 flex flex-col gap-4">{getStepContent(activeStep)}</div>
+      </div>
 
-        <button disabled={activeStep === 0} onClick={handleBack} className="">
-          Voltar
-        </button>
-        {activeStep === steps.length - 1 && (
-          <button onClick={handleSubmit(onSubmit)}>Avancar</button>
-        )}
-        {activeStep !== steps.length - 1 && (
-          <button onClick={handleNext}>Avancar</button>
-        )}
-      </FormProvider>
-    </>
+      <button disabled={activeStep === 0} onClick={handleBack} className="">
+        Voltar
+      </button>
+      {activeStep === steps.length - 1 && (
+        <button onClick={handleSubmit(onSubmit)}>Avancar</button>
+      )}
+      {activeStep !== steps.length - 1 && (
+        <button onClick={handleNext}>Avancar</button>
+      )}
+    </FormProvider>
   );
 }
