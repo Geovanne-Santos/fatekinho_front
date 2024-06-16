@@ -2,10 +2,12 @@ import { Input } from "../Input";
 
 export function Step3() {
   return (
-    <div>
+    <>
       <Input label="Numero do Cartão de Crédito" name="numberCreditCard" />
-      <Input label="Data de validade" name="validateData" />
-      <Input label="CVV" name="cvv" />
-    </div>
+      <div className="flex justify-between">
+        <Input label="Data de validade" name="validateData" className="w-2/6" />
+        <Input label="CVV" name="cvv" className="w-1/6" />
+      </div>
+    </>
   );
 }

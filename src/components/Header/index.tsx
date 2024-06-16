@@ -9,13 +9,13 @@ export function Header({ isOpen, setIsOpen }: any) {
         <BurgerIcon isOpen={isOpen} setIsOpen={setIsOpen} />
         <h1 className="text-2xl font-bold">
           <Link to={"/"}>
-            <img className="h-20" src={Fatekino} />
+            <img className="h-14" src={Fatekino} />
           </Link>
         </h1>
       </div>
 
       <div className="flex items-center">
-        <div className="flex items-center gap-4 bg-[#090F15] p-4 rounded">
+        <div className="flex items-center gap-4 bg-[#090F15] p-3 rounded">
           <Link
             className="py-1 px-4 rounded transition bg-[#FAF753] hover:bg-[#adac49] text-[#1E1E1E]"
             to={"/register"}

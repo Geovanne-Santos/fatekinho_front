@@ -6,6 +6,8 @@ import { Step1 } from "./Step1";
 import { Step2 } from "./Step2";
 import { Step3 } from "./Step3";
 import Car from "../../assets/car.png";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function getStepContent(step: number) {
   switch (step) {
@@ -19,18 +21,21 @@ function getStepContent(step: number) {
       console.log(step);
       return <Step3 />;
     default:
-      return "Unknown step";
+      return "Etapa desconhecida";
   }
 }
 
 export function Steps() {
   const [activeStep, setActiveStep] = useState(0);
   const steps = ["steps1", "steps2", "steps3"];
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     console.log(JSON.stringify(data));
     alert(JSON.stringify(data));
     handleNext();
+    navigate("/");
+    toast.success("Sucesso");
   };
 
   const validationSchema = [
@@ -93,15 +98,15 @@ export function Steps() {
   const handleBack = async () =>
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
-  const handleReset = () => {
+  /*   const handleReset = () => {
     setActiveStep(0);
     reset();
-  };
+  }; */
 
   return (
     <FormProvider {...methods}>
       <div
-        className="flex flex-col items-center justify-center w-3/6 h-4/6 bg-[#FFFFFF] rounded-3xl shadow-2xl border-8 border-[#FAF755] text-black"
+        className="flex flex-col items-center justify-center w-3/6 py-20 bg-[#FFFFFF] rounded-3xl shadow-2xl border-8 border-[#FAF755] text-black"
         style={{
           backgroundImage: `url(${Car})`,
           backgroundPosition: "center",
@@ -111,18 +116,36 @@ export function Steps() {
         <h1 className="text-center text-[#ED1836] text-4xl font-bold mb-4">
           DADOS PESSOAIS
         </h1>
-        <div className="w-4/5 flex flex-col gap-4">{getStepContent(activeStep)}</div>
-      </div>
+        <div className="w-4/5 flex flex-col gap-4">
+          {getStepContent(activeStep)}
 
-      <button disabled={activeStep === 0} onClick={handleBack} className="">
-        Voltar
-      </button>
-      {activeStep === steps.length - 1 && (
-        <button onClick={handleSubmit(onSubmit)}>Avancar</button>
-      )}
-      {activeStep !== steps.length - 1 && (
-        <button onClick={handleNext}>Avancar</button>
-      )}
+          <div className="flex justify-center gap-10">
+            <button
+              disabled={activeStep === 0}
+              onClick={handleBack}
+              className=""
+            >
+              Voltar
+            </button>
+            {activeStep === steps.length - 1 && (
+              <button
+                onClick={handleSubmit(onSubmit)}
+                className="transition bg-[#ED1836] hover:bg-[#a10d24] rounded-full w-2/5 text-[#ffff] px-4 py-2"
+              >
+                Enviar
+              </button>
+            )}
+            {activeStep !== steps.length - 1 && (
+              <button
+                onClick={handleNext}
+                className="transition bg-[#ED1836] hover:bg-[#a10d24] rounded-full w-2/5 text-[#ffff] px-4 py-2"
+              >
+                Avancar
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
     </FormProvider>
   );
 }

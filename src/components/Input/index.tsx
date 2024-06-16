@@ -7,16 +7,15 @@ import {
 export const Input = ({ ...props }) => {
   const { control, formState } = useFormContext();
   const error = get(formState.errors, props.name);
-  console.log(error)
   return (
-    <div className={`${props.className} flex flex-col`}>
-      <label className="mb-2">{props.label}</label>
+    <div className={`${props.className} ${props.type == "checkbox" ? "" : "flex flex-col"}`}>
+      <label>{props.label}</label>
       <Controller
         name={props.name}
         control={control}
         defaultValue=""
         render={({ field }) => (
-          <input {...field} type="text" className="text-black shadow-xl border-zinc-300 rounded-md p-2" />
+          <input {...field} type={props.type ? props.type : "text"} placeholder={props.placeholder ? props.placeholder : ""} className="text-black shadow-xl border-zinc-300 rounded-md p-2" />
         )}
       />
       <p className="text-red-500">{error?.message}</p>
