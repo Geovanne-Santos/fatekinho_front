@@ -1,5 +1,6 @@
+import $ from "jquery";
 export function iniciar_roleta() {
-    let $container = $(".container");
+    let $container = $(".container"),
         linha = "";
     linha += "<div class='linha'>";
     linha += "  <div class='cartao coringa'>0</div>";
@@ -96,7 +97,7 @@ export function rodar(escolha, valor, number){
             $("#resultado").text(`Você ganhou ${ganho}!`)
             let novo_saldo = saldo+ganho
             console.log("ganho ="+ganho+" saldo = "+saldo+" novosaldo = "+novo_saldo)
-            updateCoins(novo_saldo)
+            //updateCoins(novo_saldo)
 
         } else if (posicao % 2 === 0 && escolha === "amarelo" ){
             $(".cartao:contains('"+posicao+"')").addClass("borderVerde");
@@ -104,21 +105,21 @@ export function rodar(escolha, valor, number){
             $("#resultado").text(`Você ganhou ${ganho}!`)
             let novo_saldo = saldo+ganho
             console.log("ganho ="+ganho+" saldo = "+saldo+" novosaldo = "+novo_saldo)
-            updateCoins(novo_saldo)
+            //updateCoins(novo_saldo)
         } else if (posicao % 2 !== 0 && escolha === "vermelho" ){
             $(".cartao:contains('"+posicao+"')").addClass("borderVerde");
             ganho = valor*2
             $("#resultado").text(`Você ganhou ${ganho}!`)
             let novo_saldo = saldo+ganho
             console.log("ganho ="+ganho+" saldo = "+saldo+" novosaldo = "+novo_saldo)
-            updateCoins(novo_saldo)
+            //updateCoins(novo_saldo)
         } else if (posicao === escolha ){
             $(".cartao:contains('"+posicao+"')").addClass("borderVerde");
             ganho = valor*9
             $("#resultado").text(`Você ganhou ${ganho}!`)
             let novo_saldo = saldo+ganho
             console.log("ganho ="+ganho+" saldo = "+saldo+" novosaldo = "+novo_saldo)
-            updateCoins(novo_saldo)
+            //updateCoins(novo_saldo)
         } else {
             $(".cartao:contains('"+posicao+"')").addClass("borderVermelha");
             $("#resultado").text(`Você perdeu ${valor}!`)
@@ -160,7 +161,6 @@ export async function checkCoins(saldo,aposta) {
         return false;
     } else {
         let saldo_att = saldo - aposta
-        await updateCoins(saldo_att)
         return true;
     }
 }
@@ -168,39 +168,9 @@ export async function checkCoins(saldo,aposta) {
 export function getIDinfo(){
     const usuario = localStorage.getItem("iduser");
     console.log("usuario: "+usuario);
-    getCoins(usuario);
 
 }
 
-export function getCoins(user) {
-    const url = `http://localhost:8080/fatecoins/get/cliente/${user}`;
-
-    return fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na requisição: ' + response.statusText);
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Manipula os dados recebidos da API
-            //console.log('Dados da API:', data);
-            //console.log('Moedas', data.qtd);
-            $("#user_saldo").val(data.qtd);
-            // Faça algo com os dados, como atualizar o saldo na ‘interface’ do usuário
-            return data.qtd
-        })
-        .catch(error => {
-            // Trata erros ocorridos durante o request
-            console.error('Erro:', error);
-            // Aqui você pode lidar com o erro conforme a sua lógica de aplicativo
-        });
-}
 
 export function updateCoins(novoSaldo) {
     const id = localStorage.getItem("iduser");
@@ -219,7 +189,6 @@ export function updateCoins(novoSaldo) {
             }
             console.log('Saldo atualizado com sucesso!');
             // Aqui você pode lidar com a resposta conforme necessário
-            getCoins(id)
         })
         .catch(error => {
             // Trata erros ocorridos durante o request

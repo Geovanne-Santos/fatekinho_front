@@ -2,14 +2,20 @@ import "./spin_wheel.css";
 import {iniciar_roleta, checkCoins, rodar, getIDinfo} from "../../../js/spin_wheel";
 import $ from 'jquery';
 import {useEffect, useState} from "react";
+import {useGetFatecoins} from "../../api/controllers/fatecoins.ts";
 //verificar css, pois esta quebrando o site todo (não alterar tag somente classes)
 export function Roleta() {
-    const [randomNumber, setRandomNumber] = useState(0);
+    const {data} = useGetFatecoins(1);
+    useEffect(() => {
+        if(data){
+            $("#user_saldo").val(data.qtd)
+        }
+    }, [data]);
 
     useEffect(() => {
         iniciar_roleta();
         $("#resultado").text("");
-        getIDinfo();
+
 
         const handleBetValueClick = (value) => {
             $("#bet_valor").val(value);

@@ -12,7 +12,7 @@
 }
 
 body{
-    height: 110vh;
+    height: 100vh;
 }
 .input_vitoria{
     font-family: Arial, Helvetica, sans-serif;
@@ -166,11 +166,20 @@ textarea:focus, input:focus{
     }
 }
 
+.container-img{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .screen{
+    transform: translate(0%,-60%);
     position: absolute;
-    transform: translate(0%,-30%);
-    width: 80%;
-    height: 70%;
+    width: 55%;
+    height: 60%;
     background-clip: padding-box;
     background: linear-gradient(to top, #FAF755, #cca000);
     overflow: hidden;
@@ -193,12 +202,14 @@ textarea:focus, input:focus{
 .column{
     flex: 1;
     width: 20%;
-    height: auto;
+    height: 70vh;
     box-sizing: border-box;
     position: relative;
 }
 
 .column .card_caca{
+    min-height: 10vw;
+    height: 30%;
     border: 5px solid transparent;
     text-align: center;
     overflow: hidden;
@@ -207,7 +218,7 @@ textarea:focus, input:focus{
 }
 
 .card_caca .img_caca {
-    height: 20%;
+    height: 100%;
     width: auto;
 }
 
@@ -215,7 +226,7 @@ textarea:focus, input:focus{
     position: fixed;
     display: flex;
     width: 80%;
-    height: 15%;
+    height: 21%;
     background-color: var(--bg-color-control);
     bottom: 0;
     left: 50%;

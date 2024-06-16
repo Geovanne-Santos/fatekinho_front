@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import img0 from "../../assets/0.png";
 
 
 
@@ -12,7 +13,7 @@ export function iniciar_linhas_caca(){
         cardEscolhida = 0;
     for(let x = 0; x < 150; x++){
         cardEscolhida = Math.floor(Math.random() * 3);
-        linha = "<div class='column0 card_caca pos"+x+" img"+cardEscolhida+"'><img class='imgs_caca' src='../src/assets/"+cardEscolhida+".png'><\/div>";
+        linha = `<div class='column0 card_caca pos${x} img${cardEscolhida}'><img class='imgs_caca' src= '../src/assets/${cardEscolhida}.png'></div>`;
         $coluna.append(linha);
     }
 
@@ -20,7 +21,7 @@ export function iniciar_linhas_caca(){
         linha1 = '';
     for(let x = 0; x < 150; x++){
         cardEscolhida = Math.floor(Math.random() * 3);
-        linha1 = "<div class='column1 card_caca pos"+x+" img"+cardEscolhida+"'><img class='imgs_caca' src='../src/assets/"+cardEscolhida+".png'><\/div>";
+        linha1 = "<div class='column1 card_caca pos"+x+" img"+cardEscolhida+"'><img class='imgs_caca' src='../src/assets/"+cardEscolhida+".png'></div>";
         $coluna1.append(linha1);
     }
 
@@ -28,7 +29,7 @@ export function iniciar_linhas_caca(){
         linha2 = '';
     for(let x = 0; x < 150; x++){
         cardEscolhida = Math.floor(Math.random() * 3);
-        linha2 = "<div class='column2 card_caca pos"+x+" img"+cardEscolhida+"'><img class='imgs_caca' src='../src/assets/"+cardEscolhida+".png'><\/div>";
+        linha2 = "<div class='column2 card_caca pos"+x+" img"+cardEscolhida+"'><img class='imgs_caca' src='../src/assets/"+cardEscolhida+".png'></div>";
         $coluna2.append(linha2);
     }
 
@@ -36,7 +37,7 @@ export function iniciar_linhas_caca(){
     linha3 = '';
     for(let x = 0; x < 150; x++){
         cardEscolhida = Math.floor(Math.random() * 3);
-        linha3 = "<div class='column3 card_caca pos"+x+" img"+cardEscolhida+"'><img class='imgs_caca' src='../src/assets/"+cardEscolhida+".png'><\/div>";
+        linha3 = "<div class='column3 card_caca pos"+x+" img"+cardEscolhida+"'><img class='imgs_caca' src='../src/assets/"+cardEscolhida+".png'></div>";
         $coluna3.append(linha3);
     }
 
@@ -44,7 +45,7 @@ export function iniciar_linhas_caca(){
         linha4 = '';
     for(let x = 0; x < 150; x++){
         cardEscolhida = Math.floor(Math.random() * 3);
-        linha4 = "<div class='column4 card_caca pos"+x+" img"+cardEscolhida+"'><img class='imgs_caca' src='../src/assets/"+cardEscolhida+".png'><\/div>";
+        linha4 = "<div class='column4 card_caca pos"+x+" img"+cardEscolhida+"'><img class='imgs_caca' src='../src/assets/"+cardEscolhida+".png'></div>";
         $coluna4.append(linha4);
     }
 }
@@ -92,9 +93,9 @@ export function girarTodasAsColunas() {
         let $coluna = $(this);
         delay = delayBase + (index * delayIncremental);
         cardIndex = Math.floor(Math.random() * (140 - 70 + 1)) + 70;
-        let caiu = $coluna.find('.card.pos' + (cardIndex)),
-            caiu2 = $coluna.find('.card.pos' + (cardIndex+1)),
-            caiu3 = $coluna.find('.card.pos' + (cardIndex+2))
+        let caiu = $coluna.find('.card_caca.pos' + (cardIndex)),
+            caiu2 = $coluna.find('.card_caca.pos' + (cardIndex+1)),
+            caiu3 = $coluna.find('.card_caca.pos' + (cardIndex+2))
     
         if (caiu.length > 0) {
             let classes1 = caiu.attr('class').split(' '),
@@ -167,7 +168,7 @@ export function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
 				break;
 				
@@ -196,7 +197,7 @@ export function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
 				break;
 			
@@ -222,7 +223,7 @@ export function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
                 break;
 
@@ -249,7 +250,7 @@ export function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
                 break;
 
@@ -276,7 +277,7 @@ export function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
                 break;
 
@@ -297,7 +298,7 @@ export function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
                 break;
 
@@ -329,7 +330,7 @@ export function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
                 break;
 
@@ -361,7 +362,7 @@ export function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
                 break;
 
@@ -393,7 +394,7 @@ export function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
                 break;
 
@@ -424,7 +425,7 @@ export function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
                 break;
                 
@@ -447,7 +448,7 @@ export function girarTodasAsColunas() {
 
 export function girarColuna($coluna, delay, cardIndex) {
 	$("#txt_vitoria").val()
-    let card_altura = $coluna.find('.card').outerHeight();
+    let card_altura = $coluna.find('.card_caca').outerHeight();
     let card_position = cardIndex * card_altura;
     let currentPosition = $coluna.scrollTop();
     let distancia_ate_card= (card_position - currentPosition);
@@ -463,8 +464,6 @@ export function girarColuna($coluna, delay, cardIndex) {
             'transform': 'translate3d(0px, 0px, 0px)' // Retorna à posição inicial
         });
 
-        // Forçar um novo cálculo de layout para garantir que a reinicialização ocorra
-        $coluna[0].offsetHeight; // Isso força o navegador a recalcular o layout
 
         // Agora, aplique a animação com o atraso especificado
         setTimeout(function() {
@@ -524,41 +523,12 @@ export function ganhou(valor){
 export function getIDinfo(){
     const usuario = localStorage.getItem("iduser");
     console.log("usuario: "+usuario);
-    getCoins(usuario);
     
     console.log($("#bet_saldo").text());
     
 }
 
-export function getCoins(user) {
-    const url = `http://localhost:8080/fatecoins/get/cliente/${user}`;
 
-    fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro na requisição: ' + response.statusText);
-        }
-        return response.json();
-    })
-    .then(data => {
-        // Manipula os dados recebidos da API
-        //console.log('Dados da API:', data);
-        //console.log('Moedas', data.qtd);
-        $("#bet_saldo").text(data.qtd);
-        // Faça algo com os dados, como atualizar o saldo na ‘interface’ do usuário
-        return data.qtd
-    })
-    .catch(error => {
-        // Trata erros ocorridos durante o request
-        console.error('Erro:', error);
-        // Aqui você pode lidar com o erro conforme a sua lógica de aplicativo
-    });
-}
 
 export function updateCoins(novoSaldo) {
     const id = localStorage.getItem("iduser");
@@ -577,7 +547,6 @@ export function updateCoins(novoSaldo) {
         }
         //console.log('Saldo atualizado com sucesso!');
         // Aqui você pode lidar com a resposta conforme necessário
-        getCoins(id)
     })
     .catch(error => {
         // Trata erros ocorridos durante o request

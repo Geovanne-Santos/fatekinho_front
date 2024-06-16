@@ -7,12 +7,19 @@ import {
     getIDinfo, girarTodasAsColunas,
     iniciar_linhas_caca, 
     //inserir_moedas_sound,
-    updateCoins
-} from "../../../js/cacaNiquel";
+    //updateCoins
+} from "./cacaNiquel";
 import $ from "jquery";
+import {useGetFatecoins} from "../../api/controllers/fatecoins.ts";
 
 //verificar css para, pois esta quebrando o site todo (não alterar tag somente classes)
 export function CacaNiquel() {
+    const {data} = useGetFatecoins(1);
+    useEffect(() => {
+        if(data){
+            $("#bet_saldo").text(data.qtd)
+        }
+    }, [data]);
     useEffect(() => {
         setTimeout(function () {
             // Código que era executado dentro do $(document).ready()
@@ -53,7 +60,7 @@ export function CacaNiquel() {
                     } else {
                         $('#bet_saldo').text(saldo - aposta);
                         saldo -= aposta;
-                        updateCoins(saldo);
+                        //updateCoins(saldo);
                         girarTodasAsColunas();
                     }
                 }
@@ -68,6 +75,7 @@ export function CacaNiquel() {
 
             $('#bet_10').click(() => {
                 //inserir_moedas_sound();
+                console.log("Clicou")
                 $('#bet_valor').text(10);
                 $('.ativo').removeClass("ativo");
                 $('#bet_10').addClass("ativo");
@@ -89,7 +97,7 @@ export function CacaNiquel() {
         }, 1000);
     }, []);
     return (
-        <>
+        <div className="container-img">
             <div className="entrar">
                 <button id="btn_entrar">Entrar</button>
                 <div className="entrar_container">
@@ -120,15 +128,16 @@ export function CacaNiquel() {
             <div className="vlinha3"></div>
             <div className="vlinha4"></div>
             <div className="vlinha5"></div>
-            <div className="screen" id="screen">
-                <div className="container_caca">
-                    <div className="column zero"></div>
-                    <div className="column um"></div>
-                    <div className="column dois"></div>
-                    <div className="column tres"></div>
-                    <div className="column quatro"></div>
+                <div className="screen" id="screen">
+                    <div className="container_caca">
+                        <div className="column zero"></div>
+                        <div className="column um"></div>
+                        <div className="column dois"></div>
+                        <div className="column tres"></div>
+                        <div className="column quatro"></div>
+                    </div>
                 </div>
-            </div>
+
             <div className="control" id="control">
                 <div className="container_saldo">
                     <i className="fa-solid fa-sack-dollar"></i>
@@ -152,6 +161,6 @@ export function CacaNiquel() {
                     </svg>
                 </button>
             </div>
-        </>
+        </div>
     )
 }

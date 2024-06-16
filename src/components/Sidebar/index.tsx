@@ -18,7 +18,8 @@ export function Sidebar({ isOpen }: { isOpen: boolean }) {
   const sidebarItems = [
     { name: "RINHA DE GALO", link: "" },
     { name: "BLACKJACK", link: "" },
-    { name: "ROLETA", link: "" },
+    { name: "CAÇA-NIQUEL", link: "caca-niquel" },
+    { name: "ROLETA", link: "roleta" },
     { name: "FUGA DAS GALINHAS", link: "" },
     { name: "JACKPOT", link: "" },
     { name: "MINI BLAZE", link: "https://brendon3578.github.io/minesweeper-game-bet/src/index.html"},
