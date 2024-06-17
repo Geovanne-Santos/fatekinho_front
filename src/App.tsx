@@ -4,16 +4,23 @@ import { Header } from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
 import { useEffect, useRef, useState } from "react";
 import { Modal } from "./components/Modal";
+import { useGetFatecoins } from "./api/controllers/fatecoins";
+import { Carregando } from "./components/Carregando";
 
 export function App() {
   const [isOpen, setIsOpen] = useState(true);
   const [isModalActive, setModalActive] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout>(null);
+  const { data } = useGetFatecoins(1);
 
   useEffect(() => {
     timeoutRef.current = setTimeout(() => setModalActive(true), 3000);
     return () => clearTimeout(timeoutRef.current);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("player-money", JSON.stringify({money: data?.qtd || 0}))
+  }, [data]);
 
   const handleModalDesactive = () => {
     setModalActive(false);
@@ -21,7 +28,7 @@ export function App() {
   };
 
   return (
-    <>
+    data ? <>
       {isModalActive && (
         <Modal
           setModalActive={setModalActive}
@@ -37,6 +44,7 @@ export function App() {
           </div>
         </main>
       </div>
-    </>
+    </> : <Carregando/>
+    
   );
 }

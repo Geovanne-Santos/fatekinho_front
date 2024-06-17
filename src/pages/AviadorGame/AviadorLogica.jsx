@@ -205,6 +205,7 @@ export function AviadorLogica() {
         if (!selectedFieldsetEl) throw new Error("fieldset don't exists!");
 
         button.addEventListener("click", () => {
+            console.log(button)
             // -- Variável que pega o valor definido no atributo data-bet-button -> se é o primeiro ou segundo
             betStatus = selectedFieldsetEl.dataset.betStatus;
             bet = getBetValueFromInput(selectedFieldsetEl);

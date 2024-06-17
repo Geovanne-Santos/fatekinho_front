@@ -1,4 +1,5 @@
-export function buildChartConfiguration(dps) {
+import aviator from "../../../assets/aviator_icon.png"
+export function buildChartConfiguration(dps: any) {
   return {
     title: {
       text: "1.00x",
@@ -26,7 +27,7 @@ export function buildChartConfiguration(dps) {
       gridThickness: 0,
       tickLength: 0,
       labelFontSize: 20,
-      labelFormatter: (e) => ".",
+      labelFormatter: (e: any) => ".",
     },
     axisY: {
       lineColor: "#4b5563", //gray 600
@@ -36,7 +37,7 @@ export function buildChartConfiguration(dps) {
       margin: 10,
       lineThickness: 1,
       labelFontSize: 20,
-      labelFormatter: (e) => ".",
+      labelFormatter: (e: any) => ".",
     },
     data: [
       {
@@ -46,7 +47,7 @@ export function buildChartConfiguration(dps) {
         lineThickness: 4,
         type: "area",
         // markerImageUrl: "./assets/aviator.svg",
-        markerImageUrl: "./assets/aviator_icon.png",
+        markerImageUrl: aviator,
         dataPoints: dps,
       },
     ],
