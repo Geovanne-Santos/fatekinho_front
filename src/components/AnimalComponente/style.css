@@ -1,8 +1,9 @@
 .card-bicho {
-    width: 10em;
+    width: 12em;
 
 }
 
 .card-bicho img{
-    height: 5em;
+    max-height: 5em;
+  
 }

@@ -4,6 +4,7 @@ export interface AnimalComponenteProps {
         numero: number;
         nome: string;
         dezenas: number[];
+        img: string;
     };
     itens: number[];
     selecionarItens: () => void;
