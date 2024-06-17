@@ -9,6 +9,7 @@ import { LoteriaConcurso } from "./pages/Loteria/LoteriaConcurso";
 import { Concurso } from "./pages/Loteria/Concurso";
 import { Roleta } from "./pages/Roleta";
 import { CacaNiquel } from "./pages/CacaNiquel";
+import { Minesweeper} from "./pages/minesweeper";
 
 import { Aviador } from "./pages/AviadorGame";
 import { JogoBicho } from "./pages/JogoBicho";
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
       {
         path: "/game/aviador",
         element: <Aviador />,
+      },
+      {
+        path: "/game/minesweeper",
+        element: <Minesweeper />,
       },
       {
         path: "/game/jogo-bicho",

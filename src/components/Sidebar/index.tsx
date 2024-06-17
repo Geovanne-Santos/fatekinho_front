@@ -19,6 +19,7 @@ export function Sidebar({ isOpen }: { isOpen: boolean }) {
     { name: "RINHA DE GALO", link: "" },
     { name: "BLACKJACK", link: "" },
     { name: "CAÇA-NIQUEL", link: "caca-niquel" },
+    { name: "MINESWEEPER", link: "minesweeper" },
     { name: "ROLETA", link: "roleta" },
     { name: "FUGA DAS GALINHAS", link: "" },
     { name: "JACKPOT", link: "" },

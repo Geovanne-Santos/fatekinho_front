@@ -1,7 +1,7 @@
 import "./spin_wheel.css";
-import {iniciar_roleta, checkCoins, rodar, getIDinfo} from "../../../js/spin_wheel";
+import {iniciar_roleta, checkCoins, rodar} from "../../../js/spin_wheel";
 import $ from 'jquery';
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useGetFatecoins} from "../../api/controllers/fatecoins.ts";
 //verificar css, pois esta quebrando o site todo (não alterar tag somente classes)
 export function Roleta() {
@@ -25,7 +25,7 @@ export function Roleta() {
             const aposta = $("#bet_valor").val();
             const saldo = $("#user_saldo").val();
             const check = await checkCoins(saldo, aposta);
-            if (check === true) {
+            if (check) {
                 const random_number = Math.floor(Math.random() * 36);
                 rodar(cor, aposta, random_number);
             }
@@ -45,7 +45,7 @@ export function Roleta() {
             const saldo = $("#user_saldo").val();
             const check = await checkCoins(saldo, aposta);
             const numero = $(this).text();
-            if (check === true) {
+            if (check) {
                 const random_number = Math.floor(Math.random() * 36);
                 rodar(numero, aposta, random_number);
             }
