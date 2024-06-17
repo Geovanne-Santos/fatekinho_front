@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+  font-family: "Roboto Mono", monospace;
+}
+
+/* remover as setas do input do tipo number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.versus-background {
+  background-image: url("../../assets/arenas/background_versus.png");
+}
+
+.arena-background {
+  background-image: url("../../assets/arenas/background_rinha_1.png");
+}
+
+@keyframes moveRooster {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+.move-rooster {
+  animation: moveRooster 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes moveRoosterFlipped {
+  0% {
+    transform: translateY(0px) scaleX(-1);
+  }
+  100% {
+    transform: translateY(-10px) scaleX(-1);
+  }
+}
+.move-rooster {
+  animation: moveRooster 0.5s ease-in-out infinite alternate;
+}
+.flip-horizontally {
+  transform: scaleX(-1);
+}
+
+.flip-horizontally.move-rooster {
+  animation: moveRoosterFlipped 0.5s ease-in-out infinite alternate;
+}
+
+.bet-button {
+  @apply bg-gray-600 hover:bg-gray-700 disabled:opacity-50 disabled:hover:scale-100 disabled:active:scale-100;
+  box-shadow: rgba(255, 255, 255, 0.4) 0 2px 0 0 inset;
+}
+
+.button-red {
+  @apply bg-red-600 hover:bg-red-700;
+}
+
+.button-blue {
+  @apply bg-blue-600 hover:bg-blue-700;
+}
+
+@keyframes redRoosterFight {
+  0% {
+    right: 4px;
+  }
+  99% {
+    right: 33.333333%;
+  }
+  100% {
+    right: 33.333333%;
+    visibility: hidden;
+    display: none;
+  }
+}
+@keyframes blueRoosterFight {
+  0% {
+    left: 4px;
+  }
+  99% {
+    left: 33.333333%;
+  }
+  100% {
+    left: 33.333333%;
+    visibility: hidden;
+    display: none;
+  }
+}
+.rooster-red-fight {
+  animation: blueRoosterFight 0.8s 5s ease-in forwards;
+}
+
+.rooster-blue-fight {
+  animation: redRoosterFight 0.8s 5s ease-in forwards;
+}
+
+@keyframes cloudFightAppear {
+  0% {
+    visibility: hidden;
+    display: none;
+  }
+  100% {
+    visibility: visible;
+    display: block;
+  }
+}
+
+.cloud-fight {
+  visibility: hidden;
+  animation: cloudFightAppear 0.1s 5.8s linear forwards;
+}
