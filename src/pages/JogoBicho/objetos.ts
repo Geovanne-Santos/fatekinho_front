@@ -1,20 +1,20 @@
 export const modalidades = [
-    { id: 1, nome: "Grupo", tipo: 1 },
-    { id: 2, nome: "Milhar", tipo: 2 },
-    { id: 3, nome: "Centena", tipo: 2 },
-    { id: 4, nome: "Dezena", tipo: 2 },
-    { id: 5, nome: "Unidade", tipo: 2 },
-    { id: 6, nome: "Passe vai vem", tipo: 1 },
-    { id: 7, nome: "Milhar invertida", tipo: 2 },
-    { id: 8, nome: "Centena invertida", tipo: 2 },
-    { id: 9, nome: "Dezena invertida", tipo: 2 },
-    { id: 10, nome: "Milhar/Centena", tipo: 2 },
-    { id: 11, nome: "Duque de dezena", tipo: 2 },
-    { id: 12, nome: "Terno de dezena", tipo: 2 },
-    { id: 13, nome: "Dupla de grupo", tipo: 1 },
-    { id: 14, nome: "Terno de grupo", tipo: 1 },
-    { id: 15, nome: "Quadra de grupo", tipo: 1 },
-    { id: 16, nome: "Quina de grupo", tipo: 1 }
+    { id: 1, nome: "Grupo", tipo: 1, itensMaximo: 10, quebra: /./g, minimoSelecionado: 1},
+    { id: 2, nome: "Milhar", tipo: 2, itensMaximo: 4, quebra: /.{1,4}/g, minimoSelecionado: 4},
+    { id: 3, nome: "Centena", tipo: 2, itensMaximo: 3, quebra: /.{1,3}/g, minimoSelecionado: 3},
+    { id: 4, nome: "Dezena", tipo: 2, itensMaximo:  2, quebra: /.{1,2}/g, minimoSelecionado: 2},
+    //{ id: 5, nome: "Unidade", tipo: 2, itensMaximo:  1},
+    //{ id: 6, nome: "Passe vai vem", tipo: 1, itensMaximo:  2},
+    { id: 7, nome: "Milhar invertida", tipo: 2, itensMaximo:  4, quebra: /.{1,1}/g, minimoSelecionado: 4},
+    { id: 8, nome: "Centena invertida", tipo: 2 , itensMaximo: 3, quebra: /.{1,1}/g, minimoSelecionado: 3},
+    { id: 9, nome: "Dezena invertida", tipo: 2, itensMaximo:  2, quebra: /.{1,1}/g, minimoSelecionado: 2},
+    //{ id: 10, nome: "Milhar/Centena", tipo: 2, itensMaximo:  4},
+    //{ id: 11, nome: "Duque de dezena", tipo: 2, itensMaximo:  4, quebra: 2},
+    //{ id: 12, nome: "Terno de dezena", tipo: 2, itensMaximo:  6, quebra: 2},
+    { id: 13, nome: "Duque de grupo", tipo: 1 , itensMaximo: 2, quebra: /./g, minimoSelecionado: 2},
+    { id: 14, nome: "Terno de grupo", tipo: 1 , itensMaximo: 3, quebra: /./g, minimoSelecionado: 3},
+    { id: 15, nome: "Quadra de grupo", tipo: 1 , itensMaximo: 4, quebra: /./g, minimoSelecionado: 4},
+    { id: 16, nome: "Quina de grupo", tipo: 1 , itensMaximo: 5, quebra: /./g, minimoSelecionado: 5}
 ];
 
 export const bichos = [
