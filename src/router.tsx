@@ -12,6 +12,7 @@ import { CacaNiquel } from "./pages/CacaNiquel";
 
 import { Aviador } from "./pages/AviadorGame";
 import { JogoBicho } from "./pages/JogoBicho";
+import { ComoJogarAviator } from "./pages/AviadorGame/comoJogar";
 
 export const router = createBrowserRouter([
   {
@@ -55,8 +56,12 @@ export const router = createBrowserRouter([
         element: <CacaNiquel />,
       },
       {
-        path: "/game/aviador",
+        path: "/game/aviator",
         element: <Aviador />,
+      },
+      {
+        path: "/game/aviator/como-jogar",
+        element: <ComoJogarAviator />,
       },
       {
         path: "/game/jogo-bicho",

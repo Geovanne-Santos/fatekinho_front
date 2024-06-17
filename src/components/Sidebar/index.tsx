@@ -20,9 +20,9 @@ export function Sidebar({ isOpen }: { isOpen: boolean }) {
     { name: "BLACKJACK", link: "" },
     { name: "CAÇA-NIQUEL", link: "caca-niquel" },
     { name: "ROLETA", link: "roleta" },
-    { name: "FUGA DAS GALINHAS", link: "" },
+    { name: "AVIATOR", link: "aviator" },
     { name: "JACKPOT", link: "" },
-    { name: "MINI BLAZE", link: "https://brendon3578.github.io/minesweeper-game-bet/src/index.html"},
+    { name: "MINI BLAZE", link: ""},
     { name: "JOGO DO BICHO", link: "jogo-bicho" },
     { name: "LOTERIAS", link: "loterias" },
   ];

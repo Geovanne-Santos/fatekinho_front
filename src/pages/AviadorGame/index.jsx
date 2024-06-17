@@ -4,20 +4,23 @@ import "./input.css"
 import "./output.css"
 import "./scroll.css"
 import { Carregando } from "../../components/Carregando";
+import mascote from "../../assets/mascote.svg"
+import coin from "../../assets/coin.svg"
+import { Link } from "react-router-dom";
 
 export function Aviador() {
     const [carregando, setCarregando] = useState(true)
     useEffect(() => {
-        setTimeout(function() {
+        setTimeout(function () {
             setCarregando(false)
             AviadorLogica()
         }, 1000);
-      },[]);
+    }, []);
 
     return (
 
         <div id="app" className="bg-background w-full min-h-screen">
-            {carregando && <Carregando/>}
+            {carregando && <Carregando />}
             <header
                 className="p-1 px-4 bg-slate-800 flex justify-between border border-b border-slate-700"
             >
@@ -25,29 +28,30 @@ export function Aviador() {
                     className="text-primary text-4xl flex items-center hover:animate-pulse"
                     href="#"
                 >
-                    <img src="./assets/mascote.svg" alt="" className="w-12 h-12" />
+                    <img src={mascote} alt="" className="w-12 h-12" />
                     Aviator
                 </a>
                 <div className="flex gap-2 items-center justify-center">
+                    <Link to="/game/aviator/como-jogar">
+                        <a
+                            className="bg-secondary flex py-0.5 px-3 items-center gap-1 justify-center rounded-full"
+                            title="Clique aqui para saber como jogar o jogo"
 
-                    <a
-                        className="bg-secondary flex py-0.5 px-3 items-center gap-1 justify-center rounded-full"
-                        title="Clique aqui para saber como jogar o jogo"
-                        href="./how-to-play.html"
-                    >
+                        >
 
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0ZM8.94 6.94a.75.75 0 1 1-1.061-1.061 3 3 0 1 1 2.871 5.026v.345a.75.75 0 0 1-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 1 0 8.94 6.94ZM10 15a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
-                        </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="text-gray-300" className="w-5 h-5">
+                                <path fillRule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0ZM8.94 6.94a.75.75 0 1 1-1.061-1.061 3 3 0 1 1 2.871 5.026v.345a.75.75 0 0 1-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 1 0 8.94 6.94ZM10 15a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
+                            </svg>
 
-                        <span className="hidden sm:inline-block"> Como jogar? </span>
-                    </a>
+                            <span className="hidden sm:inline-block text-gray-800"> Como jogar? </span>
+                        </a>
+                    </Link>
 
                     <div
                         className="flex gap-2 items-center justify-center py-0.5 px-3 bg-slate-900 border-slate-700 border rounded-full text-white"
                     >
                         <span
-                        ><img src="./assets/coin.svg" alt="fatecoins" className="w-6 h-6"
+                        ><img src={coin} alt="fatecoins" className="w-6 h-6"
                             /></span>
                         <span id="player-money">0.00</span>
                     </div>

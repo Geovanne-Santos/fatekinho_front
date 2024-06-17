@@ -1,4 +1,4 @@
-import { buildChartConfiguration } from "../config/chart.config.js";
+import { buildChartConfiguration } from "../config/chart.config.ts";
 import { elementExists } from "../utils.js";
 
 export class Chart {
