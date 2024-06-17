@@ -1,20 +1,27 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AviadorLogica } from "./AviadorLogica"
 import "./input.css"
 import "./output.css"
 import "./scroll.css"
 import { Carregando } from "../../components/Carregando";
-import mascote from "../../assets/mascote.svg"
-import coin from "../../assets/coin.svg"
+import mascote from "../../assets/mascote.svg";
+import coin from "../../assets/coin.svg";
 import { Link } from "react-router-dom";
 
-export function Aviador() {
+
+export function Aviator() {
     const [carregando, setCarregando] = useState(true)
+    let declarado = false
     useEffect(() => {
-        setTimeout(function () {
-            setCarregando(false)
-            AviadorLogica()
-        }, 1000);
+        if(!declarado){
+            declarado = true
+            setTimeout(function () {
+                console.log(1)
+                setCarregando(false)
+                AviadorLogica()
+            }, 1000);
+        }
+        
     }, []);
 
     return (

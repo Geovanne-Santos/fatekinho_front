@@ -3,16 +3,15 @@ import { Home } from "./pages/Home";
 import { App } from "./App";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
-import { GamePlayer } from "./pages/GamePlayer";
 import { Loteria } from "./pages/Loteria";
 import { LoteriaConcurso } from "./pages/Loteria/LoteriaConcurso";
 import { Concurso } from "./pages/Loteria/Concurso";
 import { Roleta } from "./pages/Roleta";
 import { CacaNiquel } from "./pages/CacaNiquel";
 
-import { Aviador } from "./pages/AviadorGame";
 import { JogoBicho } from "./pages/JogoBicho";
 import { ComoJogarAviator } from "./pages/AviadorGame/comoJogar";
+import { Aviator } from "./pages/AviadorGame";
 
 export const router = createBrowserRouter([
   {
@@ -30,10 +29,6 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
-      },
-      {
-        path: "/game/:gameLink",
-        element: <GamePlayer />,
       },
       {
         path: "/game/loterias",
@@ -56,10 +51,6 @@ export const router = createBrowserRouter([
         element: <CacaNiquel />,
       },
       {
-        path: "/game/aviator",
-        element: <Aviador />,
-      },
-      {
         path: "/game/aviator/como-jogar",
         element: <ComoJogarAviator />,
       },
@@ -67,6 +58,10 @@ export const router = createBrowserRouter([
         path: "/game/jogo-bicho",
         element: <JogoBicho />,
       },
+      {
+        path: "/game/aviator",
+        element: <Aviator/>
+      }
     ],
   },
 ]);
