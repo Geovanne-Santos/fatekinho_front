@@ -67,6 +67,8 @@ import H_1 from './cards/1-H.png';
 import S_1 from './cards/1-S.png';
 import $ from "jquery";
 import {useGetFatecoins} from "../../api/controllers/fatecoins.ts";
+import {useSelector} from "react-redux";
+import {getUserId} from "../../features/auth/authLogin.ts";
 
 export function Blackjack() {
     const lista = [
@@ -161,7 +163,8 @@ export function Blackjack() {
     const [confirmarAposta, setConfirmarAposta] = useState<boolean>(false);
     const [confirmeCardB, setConfirmeCardB] = useState<boolean>(false);
     const [popupMessage, setPopupMessage] = useState<string>('');
-    const {data} = useGetFatecoins(1);
+    const id = useSelector(getUserId);
+    const { data} = useGetFatecoins(id || 0);
 
     const cardB = 'Back';
 
@@ -172,15 +175,16 @@ export function Blackjack() {
     }
     useEffect(() => {
         if (data) {
+            atualizarSaldo()
             $("#saldo").text(data.qtd);
             setSaldo(parseInt(data.qtd));
-            atualizarSaldo()
+
 
         }
     }, [data]);
     const atualizarSaldo = () =>{
         window.localStorage.setItem(
-            "playermoney",
+            "player-money",
             JSON.stringify({money:saldo})
         )
         dispatchEvent(new Event("storage"))

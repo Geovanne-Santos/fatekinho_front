@@ -11,16 +11,20 @@ import {
 } from "./cacaNiquel";
 import $ from "jquery";
 import { useGetFatecoins } from "../../api/controllers/fatecoins.ts";
+import {useSelector} from "react-redux";
+import {getUserId} from "../../features/auth/authLogin.ts";
 
 //verificar css para, pois esta quebrando o site todo (não alterar tag somente classes)
 export function CacaNiquel() {
-    const { data } = useGetFatecoins(1);
+    const id = useSelector(getUserId);
+    const { data} = useGetFatecoins(id || 0);
     const [saldo, setSaldo] = useState<number>(0)
     useEffect(() => {
         if (data) {
+            atualizarSaldo()
             $("#bet_saldo").text(data.qtd)
             setSaldo(parseInt(data.qtd))
-            atualizarSaldo()
+
         }
     }, [data]);
 

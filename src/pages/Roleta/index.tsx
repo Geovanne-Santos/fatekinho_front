@@ -3,15 +3,19 @@ import {iniciar_roleta, checkCoins, rodar} from "../../../js/spin_wheel";
 import $ from 'jquery';
 import {useEffect, useState} from "react";
 import {useGetFatecoins} from "../../api/controllers/fatecoins.ts";
+import {useSelector} from "react-redux";
+import {getUserId} from "../../features/auth/authLogin.ts";
 //verificar css, pois esta quebrando o site todo (não alterar tag somente classes)
 export function Roleta() {
-    const {data} = useGetFatecoins(1);
+    const id = useSelector(getUserId);
+    const { data} = useGetFatecoins(id || 0);
     const [saldo, setSaldo] = useState<number>(0)
     useEffect(() => {
         if(data){
+            atualizarSaldo()
             $("#user_saldo").val(data.qtd)
             setSaldo(parseInt(data.qtd))
-            atualizarSaldo()
+
         }
     }, [data]);
 
