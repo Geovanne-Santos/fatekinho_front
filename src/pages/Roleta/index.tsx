@@ -12,9 +12,9 @@ export function Roleta() {
     const [saldo, setSaldo] = useState<number>(0)
     useEffect(() => {
         if(data){
-            atualizarSaldo()
             $("#user_saldo").val(data.qtd)
             setSaldo(parseInt(data.qtd))
+            atualizarSaldo()
 
         }
     }, [data]);

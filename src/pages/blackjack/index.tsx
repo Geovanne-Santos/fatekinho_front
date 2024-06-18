@@ -175,9 +175,10 @@ export function Blackjack() {
     }
     useEffect(() => {
         if (data) {
-            atualizarSaldo()
+
             $("#saldo").text(data.qtd);
             setSaldo(parseInt(data.qtd));
+            atualizarSaldo()
 
 
         }

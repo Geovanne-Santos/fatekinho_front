@@ -21,9 +21,10 @@ export function CacaNiquel() {
     const [saldo, setSaldo] = useState<number>(0)
     useEffect(() => {
         if (data) {
-            atualizarSaldo()
+
             $("#bet_saldo").text(data.qtd)
             setSaldo(parseInt(data.qtd))
+            atualizarSaldo()
 
         }
     }, [data]);
