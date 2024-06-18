@@ -260,6 +260,7 @@
 	  transform: translate(-50%,-50%);
 	  border: black 2px solid;
 	top: 500px;
+	  z-index: 100;
 
   }
   #pontosDealer{
@@ -271,7 +272,7 @@
 	  transform: translate(-50%,-50%);
 	top: 28%;
 	  border: black 2px solid;
-
+	  z-index: 100;
 
   }
   
