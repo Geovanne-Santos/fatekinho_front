@@ -66,7 +66,7 @@ export function Login() {
   };
 
   return (
-    <section className="flex justify-center items-center w-full h-full bg-coins h-dvh">
+    <section className="flex justify-center items-center w-full h-full bg-coins" style={{height: "100vh"}}>
       <div
         className="flex flex-col items-center justify-center w-2/5 h-3/6 bg-[#FFFFFF] rounded-3xl shadow-2xl border-8 border-[#FAF755]"
         style={{
