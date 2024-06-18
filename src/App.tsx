@@ -60,9 +60,9 @@ export function App() {
     localStorage.setItem("player-money", JSON.stringify({ money: data?.qtd || 0 }))
   }, [data]);
 
-  useEffect(() => {
+ /*  useEffect(() => {
     console.log(data, id)
-  }, [id]);
+  }, [id]); */
 
   const handleModalDesactive = () => {
     setModalActive(false);

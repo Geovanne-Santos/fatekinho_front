@@ -18,6 +18,7 @@ import { RoosterFight } from "./pages/RoosterFight";
 import { ComoJogarRoosterFight } from "./pages/RoosterFight/comoJogar";
 import { MineSweeper } from "./pages/minesweeper2";
 import { ComoJogarMineSweeper } from "./pages/minesweeper2/comoJogar";
+import { Profile } from "./pages/Profile";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -87,6 +88,10 @@ export const router = createBrowserRouter([
         path: "/game/rooster-fight/como-jogar",
         element: <ComoJogarRoosterFight />,
       },
+      {
+        path: "/profile",
+        element: <Profile />
+      }
     ],
   },
 ]);
