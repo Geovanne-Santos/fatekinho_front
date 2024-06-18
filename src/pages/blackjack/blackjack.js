@@ -197,11 +197,11 @@ function stand() {
   dealerHand.splice(1,1);
 
   if(confirmarAposta===true){
-    confirmeCardB = false;
-    
-    while (calculateHandValue(dealerHand) < 17) {
+      confirmeCardB = false;
+
+      while (calculateHandValue(dealerHand) < 17) {
         dealerHand.push(dealCard());
-    }
+      }
     renderDealerHands();
     determineWinner();
 

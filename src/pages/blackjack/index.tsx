@@ -190,10 +190,14 @@ export function Blackjack() {
     }, []);
     useEffect(() => {
         renderPlayerHands();
-        renderDealerHands();
         setPlayerValue(calculateHandValue(playerHand));
-        setDealerValue(calculateHandValue(dealerHand));
+
     }, [playerHand]);
+
+    useEffect(() => {
+        renderDealerHands()
+        setDealerValue(calculateHandValue(dealerHand));
+    }, [dealerHand]);
 
     const startGame = () => {
         const betValorElem = document.getElementById('bet-valor') as HTMLInputElement;
@@ -275,22 +279,19 @@ export function Blackjack() {
 
             dealerHand.forEach((card, index) => {
                 // Verifica se é a segunda carta e se confirmeCardB é verdadeiro para mostrar a imagem de costas
+                const cardInfo = lista.find(l => l.card === card);
                 const cardImage = document.createElement('img');
-                if (index === 1 && confirmeCardB) {
-                    const cardInfo = carta_back
-                    cardImage.src = cardInfo; // Caminho para a imagem de costas
-                    cardImage.alt = 'Back'; // Texto alternativo para acessibilidade
-                } else {
-                    // Encontrar o objeto correspondente na lista com base no nome da carta
-                    const cardInfo = lista.find(l => l.card === card);
-                    if (cardInfo) {
-                        cardImage.src = cardInfo.img; // Atribui o src com a propriedade img da carta encontrada
-                        cardImage.alt = card; // Define o texto alternativo com o nome da carta
-                    }
+                if(cardInfo){
+                    cardImage.src = cardInfo.img; // Atribui o src com a propriedade img da carta encontrada
+                    cardImage.alt = card; // Define o texto alternativo com o nome da carta
+                    cardImage.classList.add('show');
+                    dealerHandDiv.appendChild(cardImage);
+
+                    cardImage.classList.add('show');
+                    dealerHandDiv.appendChild(cardImage);
                 }
 
-                cardImage.classList.add('show');
-                dealerHandDiv.appendChild(cardImage);
+                if (index === 1 && confirmeCardB){index--}
             });
         }
     }
@@ -426,13 +427,18 @@ export function Blackjack() {
 
     const stand = () => {
         // Lógica para a vez do dealer (banca) jogar
+        dealerHand.splice(1, 1)
+        renderDealerHands()
         // Isso geralmente envolve um loop onde o dealer continua a pegar cartas até que sua mão atinja um valor específico (ex: 17 ou mais).
-
-        // Por exemplo:
+        if(confirmarAposta){
+            setConfirmeCardB(false);
+        }
         while (calculateHandValue(dealerHand) < 17) {
-            dealerHand.push(dealCard());
+            dealerHand.push(dealCard())
+            renderDealerHands()
         }
 
+        renderDealerHands();
         // Após o dealer jogar, determine o resultado da rodada
         determineWinner();
     };
@@ -444,6 +450,8 @@ export function Blackjack() {
     }
 
     const determineWinner = () => {
+        renderDealerHands()
+        renderPlayerHands()
         const playerTotal = calculateHandValue(playerHand);
         const dealerTotal = calculateHandValue(dealerHand);
         let result = '';
