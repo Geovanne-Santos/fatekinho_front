@@ -16,6 +16,7 @@ import bgVersus from "../../assets/arenas/background_versus.png";
 import { Link } from "react-router-dom";
 import { Game } from "./classes/Game";
 import { showAlert } from "./utils";
+import { Container } from "../../components/Container";
 
 export function RoosterFight() {
     const [carregando, setCarregando] = useState(true)
@@ -62,7 +63,7 @@ export function RoosterFight() {
     return (
         <>
             {carregando && <Carregando />}
-            <div id="app" className="w-full min-h-screen">
+            <div id="app" className="w-full min-h-screen mt-20">
 
                 <header
                     className="p-1 px-4 bg-slate-800 flex justify-between border border-b border-slate-700"
@@ -110,7 +111,7 @@ export function RoosterFight() {
                     <div
                         className="max-w-5xl flex flex-col w-full items-center justify-center p-2 gap-3"
                     >
-                        <h3 className="text-3xl font-bold text-white" data-title>
+                        <h3 className="text-3xl font-bold text-white mt-4" data-title>
                             Quem ganha essa briga?
                         </h3>
 

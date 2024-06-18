@@ -518,7 +518,7 @@ export function Blackjack() {
 
     return (
         <>
-            <div className="container">
+            <div className="container mt-16">
                 <a href="#" onClick= {exibirPopup} className="link">Regras do Jogo</a>
 
                 <div className="popup" id="popup">

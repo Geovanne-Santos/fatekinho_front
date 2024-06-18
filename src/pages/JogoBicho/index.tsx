@@ -71,7 +71,7 @@ export function JogoBicho() {
             <Container titulo="Jogo do bicho">
                 {(isLoading || carregando) && <Carregando />}
                 <div className="grid grid-cols-9 gap-4 w-full sm:space-x-4">
-                    <div className="col-span-5 w-full pt-4 pr-20">
+                    <div className="col-span-6 w-full pt-4 pr-20">
                         <Label texto={modalidades.find((m) => m.id == modalidade.id) ? modalidades.find((m) => m.id == modalidade.id)?.nome : ""} textoGrifado="Escolha a modalidade:" classes="mb-5" />
                         <br />
                         {modalidades.map((m) => {
@@ -103,13 +103,13 @@ export function JogoBicho() {
                             />
                         }
                         <Label textoGrifado="Insira o valor da aposta" classes="mt-10 mb-5" /><br />
-                        <label className="relative text-gray-400 block">
+                        <label className="relative text-gray-400 block ">
                             <div className="pointer-events-none w-8 h-8 absolute top-1/2 transform -translate-y-1/2 left-3 items-center text-center flex">
                                 F
                             </div>
                             <input onChange={(e) => formatarMoeda(e.target.value)}
                                 value={valor.toString().replace(".", ",")}
-                                type="text" name="email" id="email" placeholder="email@kemuscorp.com" className="form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg py-3 px-4 appearance-none w-full block pl-14 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:bg-gray-700" />
+                                type="text" name="email" id="email" placeholder="email@kemuscorp.com" className="text-left form-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg py-3 px-4 appearance-none w-full block pl-14 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:bg-gray-700" />
                         </label>
 
                         <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center rounded-lg bg-[#FAF753] text-[#1E1E1E] mt-12 disabled:bg-[#090F15] disabled:text-white"
@@ -124,7 +124,7 @@ export function JogoBicho() {
 
                         </button>
                     </div>
-                    <div className="col-span-4 w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                    <div className="col-span-3 w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                         <Label textoGrifado="Apostas" classes="mb-5" personalizado="text-gray-200" tamanho="2xl" />
                         {data && data?.map((a) => {
                             return (

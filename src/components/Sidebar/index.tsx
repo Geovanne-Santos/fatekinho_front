@@ -19,11 +19,10 @@ export function Sidebar({ isOpen }: { isOpen: boolean }) {
     { name: "RINHA DE GALO", link: "rooster-fight" },
     { name: "BLACKJACK", link: "blackjack" },
     { name: "CAÇA-NIQUEL", link: "caca-niquel" },
-    { name: "MINESWEEPER", link: "minesweeper" },
     { name: "ROLETA", link: "roleta" },
     { name: "AVIATOR", link: "aviator" },
     { name: "JACKPOT", link: "" },
-    { name: "MINI BLAZE", link: ""},
+    { name: "MINI BLAZE", link: "minesweeper"},
     { name: "JOGO DO BICHO", link: "jogo-bicho" },
     { name: "LOTERIAS", link: "loterias" },
   ];
@@ -34,7 +33,7 @@ export function Sidebar({ isOpen }: { isOpen: boolean }) {
         isOpen ? "translate-x-0" : "-translate-x-full"
       } fixed top-0 left-0 bottom-0`}
     >
-      <div className="px-8 py-20">
+      <div className="px-8 py-20 ">
         <ul className="flex flex-col gap-6 text-center">
           {sidebarItems.map((item, index) => (
             <li

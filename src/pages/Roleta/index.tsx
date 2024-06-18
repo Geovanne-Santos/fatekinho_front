@@ -66,7 +66,7 @@ export function Roleta() {
     }, []);
     return (
         <>
-            <div className="menu-lateral">
+            <div className="menu-lateral mt-16">
                 <div className="container-user">
                     <p id="user_name">Moedas</p>
                     <input type="number" name="" id="user_saldo" value={0} readOnly={true}></input>
@@ -132,7 +132,7 @@ export function Roleta() {
                     </div>
                 </div>
             </div>
-            <div className="tela-jogo">
+            <div className="tela-jogo mt-16">
                 <div className="screen">
                     <div id="resultado">Girando...</div>
                     <div className='carrosel'>

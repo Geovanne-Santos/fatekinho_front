@@ -61,7 +61,7 @@ export function Aviator() {
 
     return (
 
-        <div id="app" className="bg-background w-full min-h-screen">
+        <div id="app" className="bg-background w-full min-h-screen mt-20">
             {carregando && <Carregando />}
             <header
                 className="p-1 px-4 bg-slate-800 flex justify-between border border-b border-slate-700"
