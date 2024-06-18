@@ -179,7 +179,7 @@ textarea:focus, input:focus{
     transform: translate(0%,-25%);
     position: absolute;
     width: 55%;
-    height: 60%;
+    height: 70%;
     background-clip: padding-box;
     background: linear-gradient(to top, #FAF755, #cca000);
     overflow: hidden;
