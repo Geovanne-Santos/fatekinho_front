@@ -7,10 +7,14 @@ export const useGetFatecoins = (idCliente: number) => {
     return useQuery<fatecoins, CustomError>({
         queryKey: ["fatecoins"],
         queryFn: async () => {
-            const { data } = await api.get(`fatecoins/get/cliente/${idCliente}`);
-            return data;
+            if (idCliente == 0) return null
+            else {
+                const { data } = await api.get(`fatecoins/get/cliente/${idCliente}`);
+                return data;
+            }
+
         }, enabled: idCliente != 0
-       
+
     });
 };
 
