@@ -16,18 +16,20 @@ export function Sidebar({ isOpen }: { isOpen: boolean }) {
 
   // Lista de itens da barra lateral
   const sidebarItems = [
-    { name: "RINHA DE GALO", link: "" },
-    { name: "BLACKJACK", link: "" },
-    { name: "ROLETA", link: "" },
-    { name: "FUGA DAS GALINHAS", link: "" },
+    { name: "RINHA DE GALO", link: "rooster-fight" },
+    { name: "BLACKJACK", link: "blackjack" },
+    { name: "CAÇA-NIQUEL", link: "caca-niquel" },
+    { name: "MINESWEEPER", link: "minesweeper" },
+    { name: "ROLETA", link: "roleta" },
+    { name: "AVIATOR", link: "aviator" },
     { name: "JACKPOT", link: "" },
-    { name: "MINI BLAZE", link: "https://brendon3578.github.io/minesweeper-game-bet/src/index.html"},
-    { name: "JOGO DO BICHO", link: "" },
+    { name: "MINI BLAZE", link: ""},
+    { name: "JOGO DO BICHO", link: "jogo-bicho" },
     { name: "LOTERIAS", link: "loterias" },
   ];
 
   return (
-    <aside
+    <aside style={{zIndex: 1000000000}}
       className={`flex items-center justify-center h-full bg-[#090F15] transition-transform duration-300 transform ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } fixed top-0 left-0 bottom-0`}

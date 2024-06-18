@@ -1,155 +1,71 @@
+import $ from 'jquery';
+import img0 from "../../assets/0.png";
 
 
-$(document).ready(function(){
-
-    iniciar_linhas();
-    $('.entrar').show();
-    $('#btn_entrar').hide();
-    $("#txt_vitoria").text("Ganhou!!")
-    getIDinfo();
-
-    setTimeout(function() {
-        // Esconde a tela de loading
-        $('#btn_entrar').css("visibility","visible");
-        $('#btn_entrar').show();
-        $('.entrar_container').hide();
-      }, 5000);
-
-    $('#bet_valor').text(0)
-    
-    var larguraTela = $(window).width();
-    var alturaTela = $(window).height();
-    
-
-    console.log("Largura da tela: " + larguraTela);
-    console.log("Altura da tela: " + alturaTela);
-
-    $('#btn_entrar').click(function(){
-        $('.entrar').hide();
-        background_music();
-    });
-
-    $("#girar").click(function(){
-		
-		let saldo = parseInt($("#bet_saldo").text())
-		let aposta = parseInt($("#bet_valor").text())
-		
-        desativar_botao()
-        if(aposta===0){
-            alert("entre uma valor de aposta!")
-            ativar_botao();
-        }else{
-            aposta = $('#bet_valor').text()
-            saldo = parseFloat($('#bet_saldo').text())
-            if(aposta>saldo){
-                alert("Saldo insuficiente!")
-                ativar_botao();
-            }else{
-                $('#bet_saldo').text(saldo-aposta)
-                saldo -= aposta
-				updateCoins(saldo)
-                girarTodasAsColunas();
-                
-            }
-            
-        }
-        
-
-    });
-    $('#bet_1').click(function(){
-        inserir_moedas_sound();
-        $('#bet_valor').text(1);
-        $('.ativo').removeClass("ativo"); // Remove a classe 'ativo' de todos os elementos
-        $(this).addClass("ativo"); // Adiciona a classe 'ativo' apenas ao elemento clicado
-    });
-    
-    $('#bet_10').click(function(){
-        inserir_moedas_sound();
-        $('#bet_valor').text(10);
-        $('.ativo').removeClass("ativo");
-        $(this).addClass("ativo");
-    });
-    
-    $('#bet_100').click(function(){
-        inserir_moedas_sound();
-        $('#bet_valor').text(100);
-        $('.ativo').removeClass("ativo");
-        $(this).addClass("ativo");
-    });
-    
-    $('#bet_all').click(function(){
-        inserir_moedas_sound();
-        $('#bet_valor').text(parseFloat($('#bet_saldo').text()));
-        $('.ativo').removeClass("ativo");
-        $(this).addClass("ativo");
-    });
-    
-});
 
 window.onerror = function(e){
     alert(e.toString())
 }
 
-function iniciar_linhas(){
-    var $coluna =  $(".column.zero"),
+export function iniciar_linhas_caca(){
+    let $coluna =  $(".column.zero"),
         linha = '',
         cardEscolhida = 0;
-    for(var x = 0; x < 150; x++){
+    for(let x = 0; x < 150; x++){
         cardEscolhida = Math.floor(Math.random() * 3);
-        linha = "<div class='column0 card pos"+x+" img"+cardEscolhida+"'><img src='../imgs/"+cardEscolhida+".png'><\/div>";
+        linha = `<div class='column0 card_caca pos${x} img${cardEscolhida}'><img class='imgs_caca' src= '../src/assets/${cardEscolhida}.png'></div>`;
         $coluna.append(linha);
     }
 
-    var $coluna =  $(".column.um"),
-        linha = '';
-    for(var x = 0; x < 150; x++){
+    let $coluna1 =  $(".column.um"),
+        linha1 = '';
+    for(let x = 0; x < 150; x++){
         cardEscolhida = Math.floor(Math.random() * 3);
-        linha = "<div class='column1 card pos"+x+" img"+cardEscolhida+"'><img src='../imgs/"+cardEscolhida+".png'><\/div>";
-        $coluna.append(linha);
+        linha1 = "<div class='column1 card_caca pos"+x+" img"+cardEscolhida+"'><img class='imgs_caca' src='../src/assets/"+cardEscolhida+".png'></div>";
+        $coluna1.append(linha1);
     }
 
-    var $coluna =  $(".column.dois"),
-    linha = '';
-
-    for(var x = 0; x < 150; x++){
+    let $coluna2 =  $(".column.dois"),
+        linha2 = '';
+    for(let x = 0; x < 150; x++){
         cardEscolhida = Math.floor(Math.random() * 3);
-        linha = "<div class='column2 card pos"+x+" img"+cardEscolhida+"'><img src='../imgs/"+cardEscolhida+".png'><\/div>";
-        $coluna.append(linha);
+        linha2 = "<div class='column2 card_caca pos"+x+" img"+cardEscolhida+"'><img class='imgs_caca' src='../src/assets/"+cardEscolhida+".png'></div>";
+        $coluna2.append(linha2);
     }
 
-    var $coluna =  $(".column.tres"),
-    linha = '';
-    for(var x = 0; x < 150; x++){
+    let $coluna3 =  $(".column.tres"),
+    linha3 = '';
+    for(let x = 0; x < 150; x++){
         cardEscolhida = Math.floor(Math.random() * 3);
-        linha = "<div class='column3 card pos"+x+" img"+cardEscolhida+"'><img src='../imgs/"+cardEscolhida+".png'><\/div>";
-        $coluna.append(linha);
+        linha3 = "<div class='column3 card_caca pos"+x+" img"+cardEscolhida+"'><img class='imgs_caca' src='../src/assets/"+cardEscolhida+".png'></div>";
+        $coluna3.append(linha3);
     }
 
-    var $coluna =  $(".column.quatro");
-    linha = '';
-    for(var x = 0; x < 150; x++){
+    let $coluna4 =  $(".column.quatro"),
+        linha4 = '';
+    for(let x = 0; x < 150; x++){
         cardEscolhida = Math.floor(Math.random() * 3);
-        linha = "<div class='column4 card pos"+x+" img"+cardEscolhida+"'><img src='../imgs/"+cardEscolhida+".png'><\/div>";
-        $coluna.append(linha);
+        linha4 = "<div class='column4 card_caca pos"+x+" img"+cardEscolhida+"'><img class='imgs_caca' src='../src/assets/"+cardEscolhida+".png'></div>";
+        $coluna4.append(linha4);
     }
 }
 
-function girarTodasAsColunas() {
+export function girarTodasAsColunas() {
 	$("#txt_vitoria").val(null)
 	remover_blink()
-    var $PopUp = $(".popup .popuptext")
-    var $linha1 = $(".linha1")
-    var $linha2 = $(".linha2")
-    var $linha3 = $(".linha3")
-    var $vlinha1 = $(".vlinha1")
-    var $vlinha2 = $(".vlinha2")
-    var $vlinha3 = $(".vlinha3")
-    var $vlinha4 = $(".vlinha4")
-    var $vlinha5 = $(".vlinha5")
-    var $linha4_1 = $(".linha4_part1")
-    var $linha4_2 = $(".linha4_part2")
-    var $linha5_1 = $(".linha5_part1")
-    var $linha5_2 = $(".linha5_part2")
+    let $PopUp = $(".popup .popuptext")
+    let $linha1 = $(".linha1")
+    let $linha2 = $(".linha2")
+    let $linha3 = $(".linha3")
+    let $vlinha1 = $(".vlinha1")
+    let $vlinha2 = $(".vlinha2")
+    let $vlinha3 = $(".vlinha3")
+    let $vlinha4 = $(".vlinha4")
+    let $vlinha5 = $(".vlinha5")
+    let $linha4_1 = $(".linha4_part1")
+    let $linha4_2 = $(".linha4_part2")
+    let $linha5_1 = $(".linha5_part1")
+    let $linha5_2 = $(".linha5_part2")
 
     $linha1.css("visibility","hidden")
     $linha2.css("visibility","hidden")
@@ -165,27 +81,27 @@ function girarTodasAsColunas() {
     $linha5_2.css("visibility","hidden")
     $PopUp.css("visibility","hidden")
 
-    var colunas = $(".column");
-    var delayBase = 100; // Ajuste o atraso base conforme necessário
-    var delayIncremental = 200; // Ajuste o incremento do atraso conforme necessário
-    var delay = 0
-    var cartasCaidas = [[], [], [], [], []];
-    var cartasCaidas_classes = [[], [], [], [], []];
-    var cardIndex = 0
+    let colunas = $(".column");
+    let delayBase = 100; // Ajuste o atraso base conforme necessário
+    let delayIncremental = 200; // Ajuste o incremento do atraso conforme necessário
+    let delay = 0
+    let cartasCaidas = [[], [], [], [], []];
+    let cartasCaidas_classes = [[], [], [], [], []];
+    let cardIndex = 0
 
     colunas.each(function(index) {
-        var $coluna = $(this);
+        let $coluna = $(this);
         delay = delayBase + (index * delayIncremental);
         cardIndex = Math.floor(Math.random() * (140 - 70 + 1)) + 70;
-        var caiu = $coluna.find('.card.pos' + (cardIndex)),
-            caiu2 = $coluna.find('.card.pos' + (cardIndex+1)),
-            caiu3 = $coluna.find('.card.pos' + (cardIndex+2))
+        let caiu = $coluna.find('.card_caca.pos' + (cardIndex)),
+            caiu2 = $coluna.find('.card_caca.pos' + (cardIndex+1)),
+            caiu3 = $coluna.find('.card_caca.pos' + (cardIndex+2))
     
         if (caiu.length > 0) {
-            var classes1 = caiu.attr('class').split(' '),
+            let classes1 = caiu.attr('class').split(' '),
                 classes2 = caiu2.attr('class').split(' '),
                 classes3 = caiu3.attr('class').split(' ');
-            var terceiraClasse1 = get_card(classes1[3]),
+            let terceiraClasse1 = get_card(classes1[3]),
                 terceiraClasse2 = get_card(classes2[3]),
                 terceiraClasse3 = get_card(classes3[3]);
 
@@ -218,14 +134,14 @@ function girarTodasAsColunas() {
         console.log("coluna 3: "+cartasCaidas_classes[2])
         console.log("coluna 4: "+cartasCaidas_classes[3])
         console.log("coluna 5: "+cartasCaidas_classes[4])
-        var valor;
-        var saldo;
-        var novo_saldo;
-        var card1;
-        var card2;
-        var card3;
-        var card4;
-        var card5;
+        let valor;
+        let saldo;
+        let novo_saldo;
+        let card1;
+        let card2;
+        let card3;
+        let card4;
+        let card5;
         
         switch (true) {
 			case (
@@ -252,7 +168,7 @@ function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
 				break;
 				
@@ -281,7 +197,7 @@ function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
 				break;
 			
@@ -307,7 +223,7 @@ function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
                 break;
 
@@ -334,7 +250,7 @@ function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
                 break;
 
@@ -361,7 +277,7 @@ function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
                 break;
 
@@ -382,7 +298,7 @@ function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
                 break;
 
@@ -414,7 +330,7 @@ function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
                 break;
 
@@ -446,7 +362,7 @@ function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
                 break;
 
@@ -478,7 +394,7 @@ function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
                 break;
 
@@ -509,7 +425,7 @@ function girarTodasAsColunas() {
                 saldo = parseInt($("#bet_saldo").text())
                 novo_saldo = saldo + (valor)
                 $("#bet_saldo").text(novo_saldo)
-                updateCoins(novo_saldo)
+                //updateCoins(novo_saldo)
                 ganhou(valor);
                 break;
                 
@@ -530,14 +446,14 @@ function girarTodasAsColunas() {
 
 }
 
-function girarColuna($coluna, delay, cardIndex) {
+export function girarColuna($coluna, delay, cardIndex) {
 	$("#txt_vitoria").val()
-    var card_altura = $coluna.find('.card').outerHeight();
-    var card_position = cardIndex * card_altura;
-    var currentPosition = $coluna.scrollTop();
-    var distancia_ate_card = (card_position - currentPosition);
+    let card_altura = $coluna.find('.card_caca').outerHeight();
+    let card_position = cardIndex * card_altura;
+    let currentPosition = $coluna.scrollTop();
+    let distancia_ate_card= (card_position - currentPosition);
 
-    var object = {
+    let object = {
 		x: Math.floor(Math.random() * 50) / 100,
         y: Math.floor(Math.random() * 20) / 100
 	};
@@ -548,15 +464,13 @@ function girarColuna($coluna, delay, cardIndex) {
             'transform': 'translate3d(0px, 0px, 0px)' // Retorna à posição inicial
         });
 
-        // Forçar um novo cálculo de layout para garantir que a reinicialização ocorra
-        $coluna[0].offsetHeight; // Isso força o navegador a recalcular o layout
 
         // Agora, aplique a animação com o atraso especificado
         setTimeout(function() {
             $coluna.css({
                 'transition-timing-function': 'cubic-bezier(0,' + object.x + ',' + object.y + ',1)',
                 'transition-duration': '6s',
-                'transform': 'translate3d(0px, -' + distancia_ate_card + 'px, 0px)'
+                'transform': 'translate3d(0px, -' + distancia_ate_card+ 'px, 0px)'
             });
         }, delay);
 
@@ -565,14 +479,8 @@ function girarColuna($coluna, delay, cardIndex) {
     }
 }
 
-function isScrolledIntoView(elem) {
-    var docViewTop = $(window).scrollTop();
-    var docViewBottom = docViewTop + $(window).height();
-    var elemTop = $(elem).offset().top;
-    var elemBottom = elemTop + $(elem).height();
-    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
-}
-function get_card(card_number) {
+
+export function get_card(card_number) {
     if(card_number==='img0'){
         return 'seven';
     }else if(card_number==='img1'){
@@ -586,7 +494,7 @@ function get_card(card_number) {
     }
 }
 
-function ativar_botao(){
+export function ativar_botao(){
     $("#girar").prop('disabled', false);
     $("#bet_1").prop('disabled', false);
     $("#bet_10").prop('disabled', false);
@@ -594,7 +502,7 @@ function ativar_botao(){
     $("#bet_all").prop('disabled', false);
 }
 
-function desativar_botao(){
+export function desativar_botao(){
     $("#girar").prop('disabled', true);
     $("#bet_1").prop('disabled', true);
     $("#bet_10").prop('disabled', true);
@@ -602,64 +510,27 @@ function desativar_botao(){
     $("#bet_all").prop('disabled', true);
 }
 
-function inserir_moedas_sound(){
-    var audio = new Audio('../sound_effect/insert_coin.wav');
-    audio.play();
-}
 
-function ganhou(valor){
-    var $PopUp = $(".popup .popuptext");
-    var audio = new Audio('../sound_effect/ganhou.mp3');
+export function ganhou(valor){
+    let audio = new Audio('../sound_effect/ganhou.mp3');
     $("#txt_vitoria").val(`Ganhou ${valor} !!`)
     //$PopUp.css("visibility","visible");
     audio.play();
 }
 
-function background_music(){
-    var audio = $("#audio-loop")[0]; // [0] para acessar o elemento DOM diretamente
-    audio.play();
-}
 
-function getIDinfo(){
+
+export function getIDinfo(){
     const usuario = localStorage.getItem("iduser");
     console.log("usuario: "+usuario);
-    let moedas = getCoins(usuario);
     
     console.log($("#bet_saldo").text());
     
 }
 
-function getCoins(user) {
-    const url = `http://localhost:8080/fatecoins/get/cliente/${user}`;
 
-    fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro na requisição: ' + response.statusText);
-        }
-        return response.json();
-    })
-    .then(data => {
-        // Manipula os dados recebidos da API
-        //console.log('Dados da API:', data);
-        //console.log('Moedas', data.qtd);
-        $("#bet_saldo").text(data.qtd);
-        // Faça algo com os dados, como atualizar o saldo na ‘interface’ do usuário
-        return data.qtd
-    })
-    .catch(error => {
-        // Trata erros ocorridos durante o request
-        console.error('Erro:', error);
-        // Aqui você pode lidar com o erro conforme a sua lógica de aplicativo
-    });
-}
 
-function updateCoins(novoSaldo) {
+export function updateCoins(novoSaldo) {
     const id = localStorage.getItem("iduser");
     const url = `http://localhost:8080/fatecoins/update/${id}`;
 
@@ -676,7 +547,6 @@ function updateCoins(novoSaldo) {
         }
         //console.log('Saldo atualizado com sucesso!');
         // Aqui você pode lidar com a resposta conforme necessário
-        getCoins(id)
     })
     .catch(error => {
         // Trata erros ocorridos durante o request
@@ -685,8 +555,8 @@ function updateCoins(novoSaldo) {
     });
 }
 
-function remover_blink(){
-	var todosElementos = document.querySelectorAll('.column0');
+export function remover_blink(){
+	let todosElementos = document.querySelectorAll('.column0');
 
 	// Itera sobre cada elemento
 	todosElementos.forEach(function(elemento) {

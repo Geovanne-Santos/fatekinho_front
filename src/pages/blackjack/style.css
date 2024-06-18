@@ -1,0 +1,392 @@
+/* Estilos para telas menores que 600px */
+@media (max-width: 1040px) {
+	.container-btn {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	  }
+	
+	  .bet-btn {
+		width: 100%;
+		margin-bottom: 10px;
+	  }
+
+	.buttons {
+	  flex-direction: column;
+	  align-items: center;
+	}
+  
+	button {
+	  margin: 5px;
+	}
+  
+	.menu {
+	  bottom: 100px;
+	  right: 20px;
+	}
+  
+	.menu-saldo {
+	  bottom: 40px;
+	  left: 20px;
+	}
+  
+
+
+	#pontosDealer, #pontosJogador{
+		margin-top: 20px;
+		margin-right: 20px;
+	}
+	.menu {
+		position: relative;
+		bottom: initial;
+		right: initial;
+		margin-top: 20px;
+		width: 100%;
+		max-width: none;
+		padding: 20px;
+	}
+	
+	
+  }
+  @media (max-width: 400px) {
+	.menu {
+	  padding: 10px;
+	}
+  }
+  
+
+  .jaro-text {
+	font-family: "Jaro", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
+  }
+  
+  .container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	width: 100vw;
+	background-color: #0f1923;
+	font-family: fantasy;
+	color: white;
+  }
+  
+
+  .baralho {
+	position: relative;
+	left: 230px;
+  }
+  
+  .baralho img {
+	position: absolute;
+	width: 100px;
+	height: auto;
+	top: 200px;
+	left: 250px;
+	box-shadow: 5px 5px 5px black;
+	transform: translateY(-50%) rotateZ(random(-5deg, 5deg));
+  }
+  
+  .baralho.reveal img {
+	transform: translateX(-100%); 
+  }
+  .dealer{
+	display: flex;
+	align-items: center;
+  }
+  
+  
+  .game-area {
+	  border: 5px solid #ed1836;
+	  border-radius: 20px;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  width: 95vw;
+	  height: 80vh;
+	  font-family: fantasy;
+	  color: white;
+	  background-image:url("background4.jpg");
+	  background-size: cover;
+	  background-position: center;
+  }
+  #popup-message{
+	  color: black;
+  }
+  
+  .dealer-area, .jogador-area {
+	  display: flex;
+	margin-bottom: 50px;
+	  flex-wrap: nowrap;
+  }
+  
+  .player-hand, .dealer-hand {
+	display: flex;
+	justify-content: center;
+  }
+
+  .player-hand{
+	  position: relative;
+	  top: 20%;
+  }
+  .dealer-hand{
+	  position: relative;
+	  top: 5%;
+  }
+  
+  .buttons {
+	display: flex;
+	justify-content: center;
+	border-color: #ed1836;
+  }
+  .h2-text{
+	  font-size: 36px;
+	  margin-right: 700px;
+  }
+
+
+.btn {
+	margin: 0 20px;
+	background-color: #faf755;
+	border-radius: 20px;
+	cursor: pointer;
+	padding: 10px 20px;
+	font-size: 16px;
+	font-weight: bold;
+	border: 1px solid #ccc;
+	color: black;
+}
+  
+  .player-hand img, .dealer-hand img {
+	width: 100px;
+	height: auto;
+	margin-right: 20px;
+	box-shadow: 5px 5px 5px black;
+	border: 1px solid black;
+	opacity: 0; /* Começam invisíveis */
+    transition: opacity 1s ease; /* Adiciona uma transição suave de 0.5 segundos para a propriedade de opacidade */
+	animation: fadeIn 0.5s ease; 
+}
+.player-hand img.show, .dealer-hand img.show {
+    opacity: 1; /* Quando a classe 'show' é adicionada, elas se tornam visíveis */
+}
+
+  /* CSS */
+.card {
+	opacity: 0;
+	animation: fadeIn 0.5s forwards;
+  }
+  
+  @keyframes fadeIn {
+	from {
+	  opacity: 0;
+	  transform: translateY(-20px);
+	}
+	to {
+	  opacity: 1;
+	  transform: translateY(0);
+	}
+  }
+  
+  
+  /*.menu {
+	position: absolute;
+	bottom: 200px;
+	right: 120px;
+	padding: 10px;
+	border: 2px solid #faf755;
+	border-radius: 8px;
+	background-color: #0f1923;
+	align-items: center;
+  }*/
+  .menu {
+	position: absolute;
+	bottom: 20%;
+	right: 5%;
+	padding: 5px;
+	border: 2px solid #faf755;
+	border-radius: 8px;
+	background-color: rgba(0, 0, 0, 0);
+	align-items: center;
+	max-width: 300px;
+	width: 90%;
+  }
+  
+
+  
+  .container-btn {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2px;
+	flex-wrap: wrap;
+	justify-content:center;
+  }
+
+
+  .bet-btn {
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	background-image: url('icones/coin.png');
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+	align-items: center;
+  }
+
+  .input-container{
+	  border: #FAF755 2px solid;
+  }
+  
+  .input-container,
+  input {
+	padding: 15px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	background-color: rgba(0, 0, 0, 0);
+	text-align: center;
+	color: #faf755;
+	font-weight: bold;
+	font-size: 16px;
+  }
+
+  #pontosJogador{
+	position: absolute;
+	align-items: center;
+	pointer-events: none;
+	  left: 50%;
+	  transform: translate(-50%,-50%);
+	  border: black 2px solid;
+	top: 500px;
+
+  }
+  #pontosDealer{
+	width: 10%;
+	position: absolute;
+	align-items: center;
+	pointer-events: none;
+	left: 50%;
+	  transform: translate(-50%,-50%);
+	top: 28%;
+	  border: black 2px solid;
+
+
+  }
+  
+  #deal-btn {
+	margin-top: 10px;
+	margin-left: 75px;
+	padding: 10px 45px;
+	font-size: 16px;
+  }
+  
+  .menu-saldo {
+	position: absolute;
+	bottom: 100px;
+	left: 100px;
+	padding: 10px 100px 10px 50px;
+	border: 2px solid #faf755;
+	border-radius: 8px;
+	background-color: #0f1923;
+	background-image: url('icones/money.png');
+	background-size: auto 100%;
+	background-position: left center;
+	background-repeat: no-repeat;
+  }
+  
+  #bet-valor {
+	pointer-events: none;
+  }
+  
+  .link {
+	position: absolute;
+	top: 200px;
+	left: 35px;
+	text-decoration: underline;
+	font-size: 14px;
+	color: white;
+	padding: 5px 20px;
+  }
+  
+  .popup {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 9999;
+  }
+  
+  .popup-content {
+	background-color: white;
+	font-family:'Times New Roman', Times, serif;
+	color: black;
+	width: 90%;
+	max-width: 400px;
+	padding: 20px;
+	border-radius: 5px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+  }
+  
+  .close {
+	float: right;
+	cursor: pointer;
+  }
+  
+  .container-baralho {
+    position: absolute;
+	background-color: black;
+
+}
+.popup-content-resultado {
+	background-color: white;
+	font-family: sans-serif;
+	font-size: 30px;
+	text-align: center;
+	color: black;
+	width: 90%;
+	max-width: 400px;
+	padding: 20px;
+	border-radius: 5px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	animation: fadeInPopup 0.5s ease-in-out; /* Adiciona a animação de escala */
+}  
+  
+  @keyframes fadeInPopup {
+	from {
+	  opacity: 0;
+	  transform: translate(-50%, -50%) scale(0.5);
+	}
+	to {
+	  opacity: 1;
+	  transform: translate(-50%, -50%) scale(1);
+	}
+  }
+  
+
+  @keyframes puxarCarta {
+	0% {
+	  transform: translateY(0) rotateZ(0deg);
+	}
+	50% {
+	  transform: translateY(-100px) rotateZ(0deg);
+	}
+	100% {
+	  transform: translateY(-200px) rotateZ(0deg);
+	}
+  }
+  
+  .baralho.puxando {
+	animation: puxarCarta 1s forwards; /* Inicia a animação */
+  }
+  

@@ -4,11 +4,14 @@ import { Header } from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
 import { useEffect, useRef, useState } from "react";
 import { Modal } from "./components/Modal";
+import { useGetFatecoins } from "./api/controllers/fatecoins";
+import { Carregando } from "./components/Carregando";
 
 export function App() {
   const [isOpen, setIsOpen] = useState(true);
   const [isModalActive, setModalActive] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout>(null);
+  const { data } = useGetFatecoins(1);
 
   useEffect(() => {
     // Verifica se o usuário está autenticado no localStorage
@@ -24,13 +27,17 @@ export function App() {
     };
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("player-money", JSON.stringify({money: data?.qtd || 0}))
+  }, [data]);
+
   const handleModalDesactive = () => {
     setModalActive(false);
     clearTimeout(timeoutRef.current);
   };
 
   return (
-    <>
+    data ? <>
       {isModalActive && (
         <Modal
           setModalActive={setModalActive}
@@ -38,14 +45,15 @@ export function App() {
         />
       )}
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-      <div className="flex z-1">
+      <div>
         <Sidebar isOpen={isOpen} />
-        <main className={`flex-grow h-dvh`}>
-          <div className="flex justify-center items-center w-full h-full">
+        <main className={`flex-grow`} style={{zIndex: 10000000000000}}>
+          <div className="flex justify-center w-full">
             <Outlet />
           </div>
         </main>
       </div>
-    </>
+    </> : <Carregando/>
+    
   );
 }

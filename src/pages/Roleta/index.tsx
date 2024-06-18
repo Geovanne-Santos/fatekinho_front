@@ -1,23 +1,90 @@
-//import "./spin_wheel.css"
+import "./spin_wheel.css";
+import {iniciar_roleta, checkCoins, rodar} from "../../../js/spin_wheel";
+import $ from 'jquery';
+import {useEffect} from "react";
+import {useGetFatecoins} from "../../api/controllers/fatecoins.ts";
 //verificar css, pois esta quebrando o site todo (não alterar tag somente classes)
 export function Roleta() {
+    const {data} = useGetFatecoins(1);
+    useEffect(() => {
+        if(data){
+            $("#user_saldo").val(data.qtd)
+        }
+    }, [data]);
+
+    useEffect(() => {
+        iniciar_roleta();
+        $("#resultado").text("");
+
+
+        const handleBetValueClick = (value) => {
+            $("#bet_valor").val(value);
+        };
+
+        const handleApostaClick = async (cor) => {
+            const aposta = $("#bet_valor").val();
+            const saldo = $("#user_saldo").val();
+            const check = await checkCoins(saldo, aposta);
+            if (check) {
+                const random_number = Math.floor(Math.random() * 36);
+                rodar(cor, aposta, random_number);
+            }
+        };
+
+        $(".btn_add.um").on("click", () => handleBetValueClick(1));
+        $(".btn_add.dez").on("click", () => handleBetValueClick(10));
+        $(".btn_add.cem").on("click", () => handleBetValueClick(100));
+        $(".btn_add.all").on("click", () => handleBetValueClick($("#user_saldo").val()));
+
+        $(".aposta.amarelo").on("click", () => handleApostaClick("amarelo"));
+        $(".aposta.vermelho").on("click", () => handleApostaClick("vermelho"));
+        $(".aposta.coringa").on("click", () => handleApostaClick("coringa"));
+
+        $(".btn_par,.btn_impar").on("click", async function () {
+            const aposta = $("#bet_valor").val();
+            const saldo = $("#user_saldo").val();
+            const check = await checkCoins(saldo, aposta);
+            const numero = $(this).text();
+            if (check) {
+                const random_number = Math.floor(Math.random() * 36);
+                rodar(numero, aposta, random_number);
+            }
+        });
+
+        return () => {
+            $(".btn_add.um").off("click");
+            $(".btn_add.dez").off("click");
+            $(".btn_add.cem").off("click");
+            $(".btn_add.all").off("click");
+
+            $(".aposta.amarelo").off("click");
+            $(".aposta.vermelho").off("click");
+            $(".aposta.coringa").off("click");
+
+            $(".btn_par,.btn_impar").off("click");
+        };
+    }, []);
     return (
         <>
             <div className="menu-lateral">
-                <h2>Roleta</h2>
+                <div className="container-user">
+                    <p id="user_name">Moedas</p>
+                    <input type="number" name="" id="user_saldo" value={0} readOnly={true}></input>
+                </div>
                 <div className="input-container">
-                    <input type="number" min="0.01" step="0.01" id="entrada" placeholder="Quantia" value="0" onInput="validity.valid||(value='');" />
+                    <input type="number" name="int_moedas" id="bet_valor" value={0} readOnly={true}></input>
                     <button className="btn_add um">+1</button>
                     <button className="btn_add dez">+10</button>
                     <button className="btn_add cem">+100</button>
+                    <button className="btn_add all">+All</button>
                 </div>
-                <h1>Selecione a cor:</h1>
+                <h2>Selecionar cor:</h2>
                 <div className="btn_container">
                     <button className="aposta amarelo">1.5X</button>
-                    <button className="aposta preto">1.5X</button>
+                    <button className="aposta vermelho">1.5X</button>
                     <button className="aposta coringa">6X</button>
                 </div>
-                <h1>Selecione um numero:</h1>
+                <h2>Selecionar numero:</h2>
                 <div className="container_colunas">
                     <div className="column">
                         <button className="btn_impar">1</button>
@@ -33,6 +100,7 @@ export function Roleta() {
                         <button className="btn_impar">31</button>
                         <button className="btn_par">34</button>
                     </div>
+
                     <div className="column">
                         <button className="btn_par">2</button>
                         <button className="btn_impar">5</button>
@@ -47,6 +115,7 @@ export function Roleta() {
                         <button className="btn_par">32</button>
                         <button className="btn_impar">35</button>
                     </div>
+
                     <div className="column">
                         <button className="btn_impar">3</button>
                         <button className="btn_par">6</button>
@@ -62,19 +131,23 @@ export function Roleta() {
                         <button className="btn_par">36</button>
                     </div>
                 </div>
-
             </div>
-            <div className="jogo">
-                <div className="saldo">
-                    Saldo total
-                    <h1>R$<div id="saldo_atual">100.00</div></h1>
+            <div className="tela-jogo">
+                <div className="screen">
+                    <div id="resultado">Girando...</div>
+                    <div className='carrosel'>
+                        <div className='seta'></div>
+                        <div className='container'></div>
+                    </div>
                 </div>
-                <div id="resultado"></div>
-                <div className='carrosel'>
-                    <div className='seta'></div>
-                    <div className='container'></div>
+                <div className="menu-inferior">
+                    <h4>Giros anteriores</h4>
+                    <div className="container-anteriores">
+                        <div className="carrosel-anteriores">
+
+                        </div>
+                    </div>
                 </div>
-                <div id="ganho"></div>
             </div>
         </>
     )

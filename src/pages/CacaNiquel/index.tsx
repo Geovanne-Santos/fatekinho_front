@@ -1,8 +1,103 @@
-//import "./index.css"
+import "./index.css"
+import { useEffect } from 'react';
+import {
+    ativar_botao,
+    //background_music,
+    desativar_botao,
+    getIDinfo, girarTodasAsColunas,
+    iniciar_linhas_caca, 
+    //inserir_moedas_sound,
+    //updateCoins
+} from "./cacaNiquel";
+import $ from "jquery";
+import {useGetFatecoins} from "../../api/controllers/fatecoins.ts";
+
 //verificar css para, pois esta quebrando o site todo (não alterar tag somente classes)
 export function CacaNiquel() {
+    const {data} = useGetFatecoins(1);
+    useEffect(() => {
+        if(data){
+            $("#bet_saldo").text(data.qtd)
+        }
+    }, [data]);
+    useEffect(() => {
+        setTimeout(function () {
+            // Código que era executado dentro do $(document).ready()
+            iniciar_linhas_caca();
+            $('.entrar').show();
+            $('#btn_entrar').hide();
+            $("#txt_vitoria").text("Ganhou!!");
+            getIDinfo();
+
+            setTimeout(() => {
+                // Esconde a tela de loading
+                $('#btn_entrar').css("visibility", "visible");
+                $('#btn_entrar').show();
+                $('.entrar_container').hide();
+            }, 5000);
+
+            $('#bet_valor').text(0);
+
+            $('#btn_entrar').click(() => {
+                $('.entrar').hide();
+                //background_music();
+            });
+
+            $("#girar").click(() => {
+                let saldo = parseInt($("#bet_saldo").text());
+                let aposta = parseInt($("#bet_valor").text());
+
+                desativar_botao();
+                if (aposta === 0) {
+                    alert("Entre um valor de aposta!");
+                    ativar_botao();
+                } else {
+                    aposta = parseInt($('#bet_valor').text());
+                    saldo = parseFloat($('#bet_saldo').text());
+                    if (aposta > saldo) {
+                        alert("Saldo insuficiente!");
+                        ativar_botao();
+                    } else {
+                        $('#bet_saldo').text(saldo - aposta);
+                        saldo -= aposta;
+                        //updateCoins(saldo);
+                        girarTodasAsColunas();
+                    }
+                }
+            });
+
+            $('#bet_1').click(() => {
+                //inserir_moedas_sound();
+                $('#bet_valor').text(1);
+                $('.ativo').removeClass("ativo");
+                $('#bet_1').addClass("ativo");
+            });
+
+            $('#bet_10').click(() => {
+                //inserir_moedas_sound();
+                console.log("Clicou")
+                $('#bet_valor').text(10);
+                $('.ativo').removeClass("ativo");
+                $('#bet_10').addClass("ativo");
+            });
+
+            $('#bet_100').click(() => {
+                //inserir_moedas_sound();
+                $('#bet_valor').text(100);
+                $('.ativo').removeClass("ativo");
+                $('#bet_100').addClass("ativo");
+            });
+
+            $('#bet_all').click(() => {
+                //inserir_moedas_sound();
+                $('#bet_valor').text(parseFloat($('#bet_saldo').text()));
+                $('.ativo').removeClass("ativo");
+                $('#bet_all').addClass("ativo");
+            });
+        }, 1000);
+    }, []);
     return (
-        <>
+        <div className="container-img">
             <div className="entrar">
                 <button id="btn_entrar">Entrar</button>
                 <div className="entrar_container">
@@ -33,15 +128,16 @@ export function CacaNiquel() {
             <div className="vlinha3"></div>
             <div className="vlinha4"></div>
             <div className="vlinha5"></div>
-            <div className="screen" id="screen">
-                <div className="container">
-                    <div className="column zero"></div>
-                    <div className="column um"></div>
-                    <div className="column dois"></div>
-                    <div className="column tres"></div>
-                    <div className="column quatro"></div>
+                <div className="screen" id="screen">
+                    <div className="container_caca">
+                        <div className="column zero"></div>
+                        <div className="column um"></div>
+                        <div className="column dois"></div>
+                        <div className="column tres"></div>
+                        <div className="column quatro"></div>
+                    </div>
                 </div>
-            </div>
+
             <div className="control" id="control">
                 <div className="container_saldo">
                     <i className="fa-solid fa-sack-dollar"></i>
@@ -49,7 +145,7 @@ export function CacaNiquel() {
                 </div>
                 <div className="container_button">
                     <div className="txt_vitoria">
-                        <input type="text" id="txt_vitoria" placeholder="..." readOnly/>
+                        <input className="input_vitoria" type="text" id="txt_vitoria" placeholder="..." readOnly />
                     </div>
                     <button className="btn_bet" id="bet_1">1</button>
                     <button className="btn_bet" id="bet_10">10</button>
@@ -65,6 +161,6 @@ export function CacaNiquel() {
                     </svg>
                 </button>
             </div>
-        </>
+        </div>
     )
 }
