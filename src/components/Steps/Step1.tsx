@@ -59,6 +59,13 @@ export function Step1() {
       </div>
       <div className="w-full flex justify-between">
         <Input
+          label="Data de nascimento"
+          placeholder="Digite o seu CEP"
+          name="data_nasc"
+          type="date"
+          className="w-3/12"
+        />
+        <Input
           label="CEP"
           placeholder="Digite o seu CEP"
           name="cep"
@@ -70,19 +77,19 @@ export function Step1() {
           name="rua"
           className="w-5/12"
         />
+      </div>
+      <div className="w-full flex justify-between">
         <Input
           label="Número"
           placeholder="Digite o seu número"
           name="number"
-          className="w-3/12"
+          className="w-2/12"
         />
-      </div>
-      <div className="w-full flex justify-between">
         <Input
           label="Complemento"
           placeholder="Digite o seu complemento"
           name="complemento"
-          className="w-7/12"
+          className="w-5/12"
         />
         <Input
           label="Bairro"

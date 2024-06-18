@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { number, object, ref, string } from "yup";
+import { date, number, object, ref, string } from "yup";
 import { Step1 } from "./Step1";
 import { Step2 } from "./Step2";
 import { Step3 } from "./Step3";
@@ -34,7 +34,7 @@ export function Steps() {
   const { mutateAsync: registerUser } = useRegister();
 
   const onSubmit = async (data) => {
-    const hashedPassword = CryptoJS.SHA256(data.password).toString();
+    //const hashedPassword = CryptoJS.SHA256(data.password).toString();
 
     const body = {
       usuario: {
@@ -64,17 +64,21 @@ export function Steps() {
     handleNext();
   };
 
-  const tryParseInt = (value: string) => {
-    if (value === "") return NaN; // Ou outra manipulação que faça sentido para seu caso
-    const parsedValue = parseInt(value, 10);
-    return isNaN(parsedValue) ? NaN : parsedValue;
+  const tryParseInt = (value, originalValue) => {
+    const parsedValue = parseInt(originalValue, 10);
+    return isNaN(parsedValue) ? value : parsedValue;
   };
-
+  
   const validationSchema = [
     object().shape({
       name: string().required("Por favor, digite seu nome."),
       cpf: string().required("Por favor, digite seu CPF."),
       gender: string().required("Por favor, selecione seu gênero."),
+      data_nasc: date().required("Por favor, insira sua data de nascimento")
+        .typeError("Por favor, digite uma data de nascimento válida.")
+        .required("Por favor, digite sua data de nascimento.")
+        .min(new Date(1900, 0, 1), "A data de nascimento deve ser posterior a 01/01/1900.")
+        .max(new Date(), "A data de nascimento não pode ser no futuro."),
       cep: string().required("Por favor, digite seu CEP."),
       rua: string().required("Por favor, digite sua rua."),
       number: number()
@@ -92,10 +96,7 @@ export function Steps() {
         .required("Por favor, digite seu e-mail."),
       password: string().required("Por favor, digite sua senha."),
       confirmPassword: string()
-        .oneOf(
-          [ref("password"), "As senhas precisam ser iguais."],
-          "As senhas precisam ser iguais."
-        )
+        .oneOf([ref("password")], "As senhas precisam ser iguais.")
         .required("Por favor, confirme sua senha."),
     }),
     object().shape({
@@ -112,6 +113,7 @@ export function Steps() {
         .required("Por favor, digite o código CVV do seu cartão de crédito."),
     }),
   ];
+  
 
   const currentSchema = validationSchema[activeStep];
   const methods = useForm({
