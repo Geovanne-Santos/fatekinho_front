@@ -17,7 +17,7 @@ export function Sidebar({ isOpen }: { isOpen: boolean }) {
   // Lista de itens da barra lateral
   const sidebarItems = [
     { name: "RINHA DE GALO", link: "" },
-    { name: "BLACKJACK", link: "" },
+    { name: "BLACKJACK", link: "blackjack" },
     { name: "CAÇA-NIQUEL", link: "caca-niquel" },
     { name: "MINESWEEPER", link: "minesweeper" },
     { name: "ROLETA", link: "roleta" },

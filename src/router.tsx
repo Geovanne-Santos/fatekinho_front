@@ -13,6 +13,7 @@ import { Minesweeper} from "./pages/minesweeper";
 import { JogoBicho } from "./pages/JogoBicho";
 import { ComoJogarAviator } from "./pages/AviadorGame/comoJogar";
 import { Aviator } from "./pages/AviadorGame";
+import {Blackjack} from "./pages/blackjack";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: "/game/caca-niquel",
         element: <CacaNiquel />,
+      },
+      {
+        path: "/game/blackjack",
+        element: <Blackjack />,
       },
       {
         path: "/game/aviator/como-jogar",

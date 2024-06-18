@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blackjack</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+</head>
+
+<body>
+  <div class="container">
+    <a href="#" onclick="exibirPopup()" class="link">Regras do Jogo</a>
+
+    <div class="popup" id="popup">
+      <div class="popup-content">
+        <span class="close" onclick="fecharPopup()">&times;</span>
+        <p class="jaro-text">O Blackjack, também conhecido como 21, é um jogo de cartas popular em que os jogadores competem contra o
+          dealer (a casa), não entre si. O objetivo do jogo é ter uma mão com um valor total o mais próximo possível de
+          21, sem ultrapassá-lo. Aqui estão as regras básicas do Blackjack:
+
+          Cartas e Valores:
+            O jogo é jogado com um ou mais baralhos padrão de 52 cartas. As cartas de 2 a 10 valem seu
+          valor nominal. As cartas de figura (Valete, Rainha e Rei) valem 10 pontos cada. O Ás pode valer 1 ou 11,
+          dependendo da situação.
+          Início do Jogo: 
+            Cada jogador recebe duas cartas viradas para cima, enquanto o dealer recebe uma carta virada
+          para cima e outra virada para baixo (conhecida como "carta buraco").
+          Jogo do Jogador: Após receber suas duas cartas, o jogador pode optar por "pedir carta", recebendo uma carta
+          adicional, ou "ficar", mantendo sua mão atual.
+          Jogo do Dealer: 
+            Depois que todos os jogadores tiverem terminado de jogar, o dealer revela sua carta virada
+          para baixo e joga de acordo com um conjunto predefinido de regras. Geralmente, o dealer deve "pedir" enquanto
+          sua mão total for menor que 17 e "ficar" quando sua mão total for 17 ou mais.
+          Vitória e Derrota: 
+            O jogador ganha se sua mão total for maior que a do dealer sem exceder 21, ou se o dealer
+          ultrapassar 21. O jogador também ganha se tiver um Blackjack enquanto o dealer não tiver. O jogador perde se
+          sua mão total exceder 21 ou se a mão do dealer for maior.
+          Empate (Push): 
+            Se o jogador e o dealer tiverem a mesma pontuação (exceto em caso de Blackjack), é considerado
+          um empate, e o jogador recupera sua aposta.</p>
+      </div>
+    </div>
+
+    <h1 class="jaro-text">Blackjack</h1>
+    <div class="game-area">
+      <div class="baralho"> </div>
+
+      <!-- Cartas do dealer -->
+      <div class="dealer">
+        <h2 class="jaro-text">DEALER</h2>
+        <input id="pontosDealer" type="number" value="0">
+      </div>
+     
+      <div class="dealer-hand">
+        <div class="dealer-area">
+          <img src="cards/ " alt="Carta 3">
+          <img src="cards/" alt="Carta 4">
+        </div>
+      </div>
+      <!-- Cartas do jogador -->
+  
+        <h2 class="jaro-text">JOGADOR</h2>
+        <input id="pontosJogador" type="number" value ="0">
+      <div class="player-hand">
+
+        <div class="jogador-area">
+          <img src="cards/" alt="Carta 1">
+          <img src="cards/" alt="Carta 2">
+
+        </div>
+      </div>
+      <h3 class="jaro-text">MENU DE APOSTA</h3>
+     
+      <div class="menu">
+       
+        <div class="input-container">
+          <label for="amount" class="jaro-text">R$</label>
+          <input id="bet-valor" type="number" min="1" value="0">
+        </div>
+        <div class="container-btn">
+          <button class="bet-btn" onclick="selectValue(0.5)">R$ 0,50</button>
+          <button class="bet-btn" onclick="selectValue(1)">R$ 1</button>
+          <button class="bet-btn" onclick="selectValue(3)">R$ 3</button>
+          <button class="bet-btn" onclick="selectValue(5)">R$ 5</button>
+          <button class="bet-btn" onclick="selectValue(10)">R$ 10</button>
+          <button class="bet-btn" onclick="selectValue(20)">R$ 20</button>
+          <button class="bet-btn" onclick="selectValue(50)">R$ 50</button>
+          <button class="bet-btn" onclick="selectValue(100)">R$ 100</button>
+          <button class="bet-btn" onclick="selectValue(200)">R$ 200</button>
+          <button class="bet-btn" onclick="selectValue(300)">R$ 300</button>
+          <button class="bet-btn" onclick="selectValue(500)">R$ 500</button>
+          <button class="bet-btn" onclick="selectValue(1000)">R$ 1000</button>
+        </div>
+        <button id="deal-btn" class="jaro-text">Apostar</button>
+      </div>
+    </div>
+    <div class="buttons">
+      <button id="newGame-btn" class="jaro-text">Novo Jogo</button>
+      <button id="hit-btn" class="jaro-text puxando">Pedir Carta</button>
+      <button id="stand-btn" class="jaro-text">Ficar</button>
+    </div>
+ 
+    <div class="menu-saldo">
+      <label for="amount" class="jaro-text">SALDO R$</label>
+      <span id="saldo">1000</span>
+
+    </div>
+  </div>
+  <div id="popupResultado" class="popup">
+    <div class="popup-content-resultado">
+      <span class="close" onclick="fecharPopupResultado()">&times;</span>
+      <p id="popup-message" class="jaro-text"></p>
+    </div>
+  </div>
+  
+  <script src="blackjack.js"></script>
+</body>
+
+</html>
