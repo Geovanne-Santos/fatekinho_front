@@ -15,7 +15,7 @@ export const Input = ({ ...props }) => {
         control={control}
         defaultValue=""
         render={({ field }) => (
-          <input {...field} type={props.type ? props.type : "text"} placeholder={props.placeholder ? props.placeholder : ""} className="text-black shadow-xl border-zinc-300 rounded-md p-2" />
+          <input {...field} type={props.type ? props.type : "text"} placeholder={props.placeholder ? props.placeholder : ""} className="text-black shadow-xl border-zinc-300 rounded-md p-2 text-start bg-[#FFFFFF]" />
         )}
       />
       <p className="text-red-500">{error?.message}</p>

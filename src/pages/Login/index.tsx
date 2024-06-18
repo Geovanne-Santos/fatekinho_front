@@ -87,7 +87,7 @@ export function Login() {
             <input
               {...register("email")}
               type="email"
-              className="shadow-xl border-zinc-300 rounded-md p-2"
+              className="shadow-xl border-zinc-300 rounded-md p-2 text-start"
             />
             <p className="text-[#ED1836]">{errors.email?.message}</p>
           </div>
@@ -98,7 +98,7 @@ export function Login() {
             <input
               {...register("password")}
               type="password"
-              className="shadow-xl border-zinc-300 rounded-md p-2"
+              className="shadow-xl border-zinc-300 rounded-md p-2 text-start"
             />
             <p className="text-[#ED1836]">{errors.password?.message}</p>
           </div>
