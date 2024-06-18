@@ -5,17 +5,22 @@ import { Label } from "../../components/Label";
 import { AnimalComponente } from "../../components/AnimalComponente";
 import { useGetApostas, useSalvarAposta } from "../../api/controllers/jogo-bicho";
 import { Carregando } from "../../components/Carregando";
+import { useDispatch, useSelector } from "react-redux";
+import { getCoins, setCoins } from "../../features/auth/fatecoins";
 
 export function JogoBicho() {
     const [modalidade, setModalidade] = useState({ id: 1, nome: "Grupo", tipo: 1, itensMaximo: 10, quebra: /./g, minimoSelecionado: 1 })
-    const { mutate, isSuccess, } = useSalvarAposta()
+    const { mutate, isSuccess } = useSalvarAposta()
     const { data, refetch, isLoading } = useGetApostas(1)
     const [itens, setItens] = useState<number[]>([])
     const [valor, setValor] = useState(0)
     const [carregando, setCarregando] = useState(false)
+    const dispatch = useDispatch();
+    const coins = useSelector(getCoins);
 
     useEffect(() => {
         if(isSuccess){
+            dispatch(setCoins(coins - valor))
             setModalidade({ id: 1, nome: "Grupo", tipo: 1, itensMaximo: 10, quebra: /./g, minimoSelecionado: 1 })
             setValor(0)
             setItens([])

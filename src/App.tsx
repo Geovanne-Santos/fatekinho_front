@@ -8,6 +8,7 @@ import { useGetFatecoins, useSalvarQtdeCoin } from "./api/controllers/fatecoins"
 import { Carregando } from "./components/Carregando";
 import { useSelector } from "react-redux";
 import { getUserId } from "./features/auth/authLogin";
+import { getCoins } from "./features/auth/fatecoins";
 
 export function App() {
   const [isOpen, setIsOpen] = useState(true);
@@ -16,13 +17,13 @@ export function App() {
   const timeoutRef = useRef<NodeJS.Timeout>(null);
   const id = useSelector(getUserId);
   const { data, refetch } = useGetFatecoins(id || 0);
-  const {mutate: salvarCoins, isSuccess} = useSalvarQtdeCoin()
+  const { mutate: salvarCoins, isSuccess } = useSalvarQtdeCoin()
+  const coins = useSelector(getCoins);
 
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
 
   useEffect(() => {
-    console.log("oi",data, atualizar)
-    if(atualizar && data){
+    if (atualizar && data) {
       seAtualizar(false)
       salvarCoins({
         ...data,
@@ -33,13 +34,17 @@ export function App() {
 
   useEffect(() => {
     if (isSuccess) refetch()
-  }, [isSuccess]);
+  }, [isSuccess, coins]);
+
+  useEffect(() => {
+    refetch()
+  }, [coins]);
 
   useEffect(() => {
     window.addEventListener('storage', () => {
       seAtualizar(true)
     })
-    
+
 
     if (!isAuthenticated) {
       // Configura o modal para aparecer após 3 segundos
@@ -52,7 +57,7 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("player-money", JSON.stringify({money: data?.qtd || 0}))
+    localStorage.setItem("player-money", JSON.stringify({ money: data?.qtd || 0 }))
   }, [data]);
 
   useEffect(() => {
@@ -75,13 +80,13 @@ export function App() {
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
       <div>
         <Sidebar isOpen={isOpen} />
-        <main className={`flex-grow `} style={{zIndex: 10000000000000}}>
+        <main className={`flex-grow `} style={{ zIndex: 10000000000000 }}>
           <div className="flex justify-center items-center w-full h-full">
             <Outlet />
           </div>
         </main>
       </div>
-    </> : <Carregando/>
-    
+    </> : <Carregando />
+
   );
 }

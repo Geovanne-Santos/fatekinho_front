@@ -18,10 +18,9 @@ export function Sidebar({ isOpen }: { isOpen: boolean }) {
   const sidebarItems = [
     { name: "RINHA DE GALO", link: "rooster-fight" },
     { name: "BLACKJACK", link: "blackjack" },
-    { name: "CAÇA-NIQUEL", link: "caca-niquel" },
     { name: "ROLETA", link: "roleta" },
     { name: "AVIATOR", link: "aviator" },
-    { name: "JACKPOT", link: "" },
+    { name: "JACKPOT", link: "caca-niquel" },
     { name: "MINI BLAZE", link: "minesweeper"},
     { name: "JOGO DO BICHO", link: "jogo-bicho" },
     { name: "LOTERIAS", link: "loterias" },
