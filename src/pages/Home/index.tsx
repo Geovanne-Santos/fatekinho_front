@@ -8,6 +8,7 @@ import BannerJackpot from '../../assets/JackSpot_1.png';
 import BannerMiniblaze from '../../assets/Mini_blaze.png';
 import BannerAviator from '../../assets/capa_aviazinho.png';
 import BannerLoteria from '../../assets/loteria_funcional.png';
+import BannerJogoBicho from '../../assets/galo.bingo.jpg';
 
 const games = [
   {
@@ -51,6 +52,13 @@ const games = [
     image: BannerLoteria,
     details: 'Tente a sorte na Loteria!',
     link: "/game/loterias",
+  },
+  
+  {
+    name: 'Jogo do bicho',
+    image: BannerJogoBicho,
+    details: 'Sorte se esconde nas patas do bicho.',
+    link: "/game/jogo-bich",
   },
 ];
 
