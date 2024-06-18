@@ -11,9 +11,9 @@ interface AuthState {
   user: User | null;
   isAuthenticated: boolean;
 }
-
+const c = localStorage.getItem("user") || "";
 const initialState: AuthState = {
-  user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user") || "") : null,
+  user: c.includes("idCliente") ? JSON.parse(c) : null,
   isAuthenticated: false,
 };
 

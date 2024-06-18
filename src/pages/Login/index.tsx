@@ -56,7 +56,7 @@ export function Login() {
 
     const response = await loginUser(body);
     if (response.success) {
-      console.log(data)
+      console.log(response)
       dispatch(login(response.user));
       
       reset();

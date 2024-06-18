@@ -6,7 +6,7 @@ interface FatecoinState {
 }
 const c = localStorage.getItem("player-money") || "";
 const initialState: FatecoinState = {
-    coins: JSON.parse(c) ? JSON.parse(c)?.money : 0
+    coins: c.includes("money") ? JSON.parse(c)?.money : 0
 }
 const fatecoinSlice = createSlice({
   name: 'fatecoin',
