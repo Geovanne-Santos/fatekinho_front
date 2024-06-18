@@ -4,11 +4,10 @@ import { RootState } from '../store';
 interface FatecoinState {
     coins: number;
 }
-
+const c = localStorage.getItem("player-money") || "";
 const initialState: FatecoinState = {
-    coins: localStorage.getItem("player-money") ? JSON.parse(localStorage.getItem("user") || "").money : null,
-};
-
+    coins: JSON.parse(c) ? JSON.parse(c)?.money : 0
+}
 const fatecoinSlice = createSlice({
   name: 'fatecoin',
   initialState,

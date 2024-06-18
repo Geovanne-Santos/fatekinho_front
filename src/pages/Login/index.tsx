@@ -115,7 +115,7 @@ export function Login() {
             Entrar
           </button>
           <Link
-            to={""}
+            to={"/register"}
             className="text-center text-[#FAAC0C] font-semibold mt-4"
           >
             Ainda não tem conta? Cadastre-se
