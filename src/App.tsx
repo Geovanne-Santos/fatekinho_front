@@ -11,15 +11,34 @@ import { getUserId } from "./features/auth/authLogin";
 
 export function App() {
   const [isOpen, setIsOpen] = useState(true);
+  const [atualizar, seAtualizar] = useState(false);
   const [isModalActive, setModalActive] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout>(null);
   const id = useSelector(getUserId);
-  const { data } = useGetFatecoins(id || 0);
-  const {mutate: salvarCoins} = useSalvarQtdeCoin()
+  const { data, refetch } = useGetFatecoins(id || 0);
+  const {mutate: salvarCoins, isSuccess} = useSalvarQtdeCoin()
 
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+
   useEffect(() => {
-    // Verifica se o usuário está autenticado no localStorage
+    console.log("oi",data, atualizar)
+    if(atualizar && data){
+      seAtualizar(false)
+      salvarCoins({
+        ...data,
+        qtd: JSON.parse(localStorage.getItem("player-money") || "").money
+      })
+    }
+  }, [atualizar]);
+
+  useEffect(() => {
+    if (isSuccess) refetch()
+  }, [isSuccess]);
+
+  useEffect(() => {
+    window.addEventListener('storage', () => {
+      seAtualizar(true)
+    })
     
 
     if (!isAuthenticated) {

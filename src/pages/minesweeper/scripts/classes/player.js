@@ -66,6 +66,7 @@ export class Player {
       "player-money",
       JSON.stringify({ money: money })
     );
+    dispatchEvent(new Event("storage"));
   }
 
   /**

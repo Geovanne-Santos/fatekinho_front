@@ -17,7 +17,8 @@ export const useGetFatecoins = (idCliente: number) => {
 export const useSalvarQtdeCoin = () => {
     return useMutation<fatecoins, CustomError, fatecoins>({
         mutationFn: async (coin) => {
-            const { data } = await api.put(`fatecoins/update/${coin.id}`, coin);
+            console.log(coin)
+            const { data } = await api.put(`fatecoins/update/${coin.idCliente}`, coin);
             return data;
         }
     });

@@ -66,6 +66,8 @@ class Player {
       "player-money",
       JSON.stringify({ money: money })
     );
+    console.log("ola")
+    dispatchEvent(new Event("storage"));
   }
 
   /**
