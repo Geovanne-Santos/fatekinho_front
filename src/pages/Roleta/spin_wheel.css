@@ -13,26 +13,19 @@
   --white: #FFFFFF;
   --gray: #818181;
 }
-body{
-  overflow-x: hidden;
-}
 
-h1 {
-  padding-left: 10px;
-  font-size: 1em; /* Tamanho da fonte desejado */
-}
-h2 {
-  text-align: center;
-}
 
 .menu-lateral{
   position: relative;
-  height: 100%;
+  height: 100vh; /* Altura inicial */
   flex-grow: 1;
   border: 2px solid var(--border-color);
   display: flex;
   flex-direction: column;
   padding: 10px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .container-user{
@@ -58,14 +51,15 @@ h2 {
   padding-inline: 20px;
 }
 
-.input-container{
-  height: 7%;
+.input-container-r{
+  height: 10%;
   display: flex;
   flex-direction: row;
   margin: 5px;
 }
 
 #bet_valor{
+
   flex-grow: 2;
   background: var(--second-bg-color);
   color: var(--font-color);
@@ -141,6 +135,7 @@ h2 {
 
 .tela-jogo{
   width: 10%;
+  top: 20%;
   flex-grow: 4;
   display: flex;
   flex-direction: column;
@@ -148,11 +143,19 @@ h2 {
   overflow: hidden;
 
 }
-.screen{
+.corpo{
+  width: 100vw;
+  display: flex;
+  height: 100vh;
+  font-size: 20px;
+  flex-direction: row;
+}
+.screen1{
   background: var(--second-bg-color);
-  flex-grow: 5;
-  overflow-x: hidden;
+  flex-grow: 1;
+  overflow: hidden;
   text-align: center;
+
 }
 #resultado{
   position: relative;
@@ -188,6 +191,7 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
 }
 
 .carrosel .container .linha {
@@ -278,7 +282,6 @@ h2 {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin: 0 auto;
   overflow: hidden;
 }
 

@@ -241,6 +241,7 @@ textarea:focus, input:focus{
     border-color: var(--border_color);
     transform: translate(-50%,0);
     justify-content: center;
+    z-index: 5;
     
 
 }
@@ -360,128 +361,159 @@ textarea:focus, input:focus{
 }
 
 .linha1{
-    position: relative;
+    position: absolute;
     height: 5px;
-    width: 80%;
+    width: 50%;
     background: red;
-    top: 22%;
-    left: 10%;
-    z-index: 100;
+    top: 20%;
+    left: 25%;
+    z-index: 1;
 }
 
 .linha2{
-    position: relative;
+    position: absolute;
     height: 5px;
-    width: 80%;
+    width: 50%;
     background: red;
-    top: 44%;
-    left: 10%;
-    z-index: 100;
+    top: 38%;
+    left: 25%;
+    z-index: 1;
 }
 
 .linha3{
-    position: relative;
+    position: absolute;
     height: 5px;
-    width: 80%;
+    width: 50%;
     background: red;
-    top: 64%;
-    left: 10%;
-    z-index: 100;
+    top: 56%;
+    left: 25%;
+    z-index: 1;
 }
 
-.linha4_part1{
-    position: relative;
-    height: 5px;
-    width: 41%;
-    background: blue;
-    top: 44.7%;
-    left: 14.3%;
-    z-index: 100;
-    transform: rotate(-40deg);
+.linha4_part1 {
+    position: absolute;
+    width: 0px;  /* largura do "V" invertido */
+    height: 100px; /* altura do "V" invertido */
+    z-index: 2;
+    top: 15%;
+    left: 50%;
 }
 
-.linha4_part2{
-    position: relative;
-    height: 5px;
-    width: 41%;
-    background: blue;
-    top: 44%;
-    left: 45.3%;
-    z-index: 100;
-    transform: rotate(40deg);
+.linha4_part1::before,
+.linha4_part1::after {
+    content: '';
+    position: absolute;
+    width: 5px;   /* espessura da linha */
+    height: 500px;   /* altura do braço do "V" invertido */
+    background-color: blue; /* cor da linha */
+}
+
+.linha4_part1::before {
+    top: 0;
+    left: 25%;
+    transform: rotate(45deg);
+    transform-origin: top left;
+}
+
+.linha4_part1::after {
+    top:  0;
+    right: calc(25% - 5px);
+    transform: rotate(-45deg);
+    transform-origin: top right;
 }
 
 
-.linha5_part1{
-    position: relative;
-    height: 5px;
-    width: 48%;
-    background: blue;
-    top: 42%;
-    left: 7%;
-    z-index: 100;
-    transform: rotate(-143deg);
+
+
+
+.linha5_part1 {
+    position: absolute;
+    width: 0px;  /* largura do "V" invertido */
+    height: 100px; /* altura do "V" invertido */
+    z-index: 2;
+    top: 62%;
+    left: 50%;
 }
 
-.linha5_part2{
-    position: relative;
-    height: 5px;
-    width: 48%;
-    background: blue;
-    top: 41.5%;
-    left: 45.1%;
-    z-index: 100;
-    transform: rotate(143deg);
+.linha5_part1::before,
+.linha5_part1::after {
+    content: '';
+    position: absolute;
+    width: 5px;   /* espessura da linha */
+    height: 500px;   /* altura do braço do "V" invertido */
+    background-color: blue; /* cor da linha */
 }
+
+.linha5_part1::before {
+    top: 0;
+    left: calc(50% - 5px); /* ajuste para alinhar corretamente */
+    transform: rotate(135deg);
+    transform-origin: top right;
+}
+
+.linha5_part1::after {
+    top: 0;
+    right: calc(50% - 10px); /* ajuste para alinhar corretamente */
+    transform: rotate(-135deg);
+    transform-origin: top left;
+}
+
+
+
+
+
+
+
+
 
 .vlinha1{
     position: absolute;
-    height: 60%;
-    width: 10px;
+    height: 55%;
+    width: 5px;
     background: green;
-    top: 15%;
-    left: 19%;
-    z-index: 101;
+    top: 8%;
+    left: 30%;
+    z-index: 3;
 }
 
 .vlinha2{
     position: absolute;
-    height: 60%;
-    width: 10px;
+    height: 55%;
+    width: 5px;
     background: green;
-    top: 15%;
-    left: 34%;
-    z-index: 101;
+    top: 8%;
+    left: 40%;
+    z-index: 3;
 }
 
 .vlinha3{
     position: absolute;
-    height: 60%;
-    width: 10px;
+    height: 55%;
+    width: 5px;
     background: green;
-    top: 15%;
+    top: 8%;
     left: 50%;
-    z-index: 101;
+    z-index: 3;
 }
 
 .vlinha4{
     position: absolute;
-    height: 60%;
-    width: 10px;
+    height: 55%;
+    width: 5px;
     background: green;
-    top: 15%;
-    left: 65%;
-    z-index: 101;
+    top: 8%;
+    left: 60%;
+    z-index: 3;
 }
 
 .vlinha5{
     position: absolute;
-    height: 60%;
-    width: 10px;
+    height: 55%;
+    width: 5px;
     background: green;
-    top: 15%;
-    left: 81%;
-    z-index: 101;
+    top: 8%;
+    left: 70%;
+    z-index: 3;
 }
 
 
