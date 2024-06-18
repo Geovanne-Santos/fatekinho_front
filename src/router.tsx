@@ -15,6 +15,8 @@ import { ComoJogarAviator } from "./pages/AviadorGame/comoJogar";
 import { Aviator } from "./pages/AviadorGame";
 import { RoosterFight } from "./pages/RoosterFight";
 import { ComoJogarRoosterFight } from "./pages/RoosterFight/comoJogar";
+import { MineSweeper } from "./pages/minesweeper2";
+import { ComoJogarMineSweeper } from "./pages/minesweeper2/comoJogar";
 
 export const router = createBrowserRouter([
   {
@@ -59,7 +61,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/game/minesweeper",
-        element: <Minesweeper />,
+        element: <MineSweeper />,
+      },
+      {
+        path: "/game/minesweeper/como-jogar",
+        element: <ComoJogarMineSweeper />,
       },
       {
         path: "/game/jogo-bicho",
