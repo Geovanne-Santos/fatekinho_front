@@ -58,7 +58,7 @@ const games = [
     name: 'Jogo do bicho',
     image: BannerJogoBicho,
     details: 'Sorte se esconde nas patas do bicho.',
-    link: "/game/jogo-bich",
+    link: "/game/jogo-bicho",
   },
 ];
 
