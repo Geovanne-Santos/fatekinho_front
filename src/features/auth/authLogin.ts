@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
 interface User {
   email: string;
+  idCliente: number;
   // Outros campos do usuário, se houver
 }
 
@@ -11,7 +13,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  user: null,
+  user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user") || "") : null,
   isAuthenticated: false,
 };
 
@@ -26,6 +28,8 @@ const authSlice = createSlice({
       // Salvar informações do usuário no localStorage
       // localStorage.setItem('user', JSON.stringify(action.payload));
       localStorage.setItem('isAuthenticated', 'true');
+      console.log(action.payload)
+      localStorage.setItem('user', JSON.stringify(action.payload));
     },
     logout(state) {
       state.user = null;
@@ -35,8 +39,12 @@ const authSlice = createSlice({
       // localStorage.removeItem('user');
       localStorage.removeItem('isAuthenticated');
     },
+
   },
 });
 
 export const { login, logout } = authSlice.actions;
 export default authSlice.reducer;
+
+export const getUserCredentials = (state: RootState) => state.auth.user
+export const getUserId = (state: RootState) => state.auth.user?.idCliente

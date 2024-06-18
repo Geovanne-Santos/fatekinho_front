@@ -56,7 +56,9 @@ export function Login() {
 
     const response = await loginUser(body);
     if (response.success) {
-      dispatch(login(data));
+      console.log(data)
+      dispatch(login(response.user));
+      
       reset();
     } else {
       toast.error(response.message);
@@ -64,7 +66,7 @@ export function Login() {
   };
 
   return (
-    <section className="flex justify-center items-center w-full h-full bg-coins">
+    <section className="flex justify-center items-center w-full h-full bg-coins" style={{height: "100vh"}}>
       <div
         className="flex flex-col items-center justify-center w-2/5 h-3/6 bg-[#FFFFFF] rounded-3xl shadow-2xl border-8 border-[#FAF755]"
         style={{
