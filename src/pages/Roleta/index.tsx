@@ -1,27 +1,38 @@
 import "./spin_wheel.css";
 import {iniciar_roleta, checkCoins, rodar} from "../../../js/spin_wheel";
 import $ from 'jquery';
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useGetFatecoins} from "../../api/controllers/fatecoins.ts";
 //verificar css, pois esta quebrando o site todo (não alterar tag somente classes)
 export function Roleta() {
     const {data} = useGetFatecoins(1);
+    const [saldo, setSaldo] = useState<number>(0)
     useEffect(() => {
         if(data){
             $("#user_saldo").val(data.qtd)
+            setSaldo(parseInt(data.qtd))
+            atualizarSaldo()
         }
     }, [data]);
+
+    const atualizarSaldo = () =>{
+        window.localStorage.setItem(
+            "player-money",
+            JSON.stringify({money:saldo})
+        )
+        dispatchEvent(new Event("storage"))
+    }
 
     useEffect(() => {
         iniciar_roleta();
         $("#resultado").text("");
 
 
-        const handleBetValueClick = (value) => {
+        const handleBetValueClick = (value:number) => {
             $("#bet_valor").val(value);
         };
 
-        const handleApostaClick = async (cor) => {
+        const handleApostaClick = async (cor:string) => {
             const aposta = $("#bet_valor").val();
             const saldo = $("#user_saldo").val();
             const check = await checkCoins(saldo, aposta);
@@ -34,7 +45,7 @@ export function Roleta() {
         $(".btn_add.um").on("click", () => handleBetValueClick(1));
         $(".btn_add.dez").on("click", () => handleBetValueClick(10));
         $(".btn_add.cem").on("click", () => handleBetValueClick(100));
-        $(".btn_add.all").on("click", () => handleBetValueClick($("#user_saldo").val()));
+        $(".btn_add.all").on("click", () => handleBetValueClick(saldo));
 
         $(".aposta.amarelo").on("click", () => handleApostaClick("amarelo"));
         $(".aposta.vermelho").on("click", () => handleApostaClick("vermelho"));

@@ -1,5 +1,5 @@
 import "./index.css"
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import {
     ativar_botao,
     //background_music,
@@ -15,11 +15,22 @@ import { useGetFatecoins } from "../../api/controllers/fatecoins.ts";
 //verificar css para, pois esta quebrando o site todo (não alterar tag somente classes)
 export function CacaNiquel() {
     const { data } = useGetFatecoins(1);
+    const [saldo, setSaldo] = useState<number>(0)
     useEffect(() => {
         if (data) {
             $("#bet_saldo").text(data.qtd)
+            setSaldo(parseInt(data.qtd))
+            atualizarSaldo()
         }
     }, [data]);
+
+    const atualizarSaldo = () =>{
+        window.localStorage.setItem(
+            "player-money",
+            JSON.stringify({money:saldo})
+        )
+        dispatchEvent(new Event("storage"))
+    }
     useEffect(() => {
         setTimeout(function () {
             // Código que era executado dentro do $(document).ready()

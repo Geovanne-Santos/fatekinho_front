@@ -173,10 +173,18 @@ export function Blackjack() {
     useEffect(() => {
         if (data) {
             $("#saldo").text(data.qtd);
+            setSaldo(parseInt(data.qtd));
+            atualizarSaldo()
 
         }
     }, [data]);
-
+    const atualizarSaldo = () =>{
+        window.localStorage.setItem(
+            "playermoney",
+            JSON.stringify({money:saldo})
+        )
+        dispatchEvent(new Event("storage"))
+    }
     useEffect(() => {
         startGame();
     }, []);
@@ -366,16 +374,7 @@ export function Blackjack() {
         }
     };
 
-    const selectValue = (value: number) => {
-        const betValorElem = document.getElementById('bet-valor') as HTMLInputElement;
 
-        if (betValorElem) {
-            const aposta = parseFloat(betValorElem.value);
-            const novaAposta = aposta + value;
-
-            betValorElem.value = novaAposta.toFixed(2);
-        }
-    };
 
 
 
@@ -387,23 +386,6 @@ export function Blackjack() {
         setConfirmeCardB(true);
         return cardB;
     };
-
-    const endGame = () => {
-        // Lógica para determinar quem ganhou, etc.
-
-        // Substituir a carta "Back" pela carta virada do dealer
-        const updatedDealerHand = [...dealerHand];
-        const backCardIndex = updatedDealerHand.indexOf("Back");
-        if (backCardIndex !== -1) {
-            updatedDealerHand[backCardIndex] = dealCard(); // Supondo que `dealCard()` retorne a próxima carta do baralho
-            setDealerHand(updatedDealerHand);
-            setDealerValue(calculateHandValue(updatedDealerHand));
-        }
-
-        // Lógica adicional para o fim do jogo
-    };
-
-
 
     const hit = () => {
         if (confirmarAposta) {
