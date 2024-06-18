@@ -11,8 +11,17 @@ export function App() {
   const timeoutRef = useRef<NodeJS.Timeout>(null);
 
   useEffect(() => {
-    timeoutRef.current = setTimeout(() => setModalActive(true), 3000);
-    return () => clearTimeout(timeoutRef.current);
+    // Verifica se o usuário está autenticado no localStorage
+    const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+
+    if (!isAuthenticated) {
+      // Configura o modal para aparecer após 3 segundos
+      timeoutRef.current = setTimeout(() => setModalActive(true), 3000);
+    }
+
+    return () => {
+      clearTimeout(timeoutRef.current);
+    };
   }, []);
 
   const handleModalDesactive = () => {

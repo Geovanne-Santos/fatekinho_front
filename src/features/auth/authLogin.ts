@@ -1,23 +1,39 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
-  user: null, // Estado inicial para o usuário (pode ser um objeto com mais informações)
-  isAuthenticated: false, // Estado inicial para autenticação
+interface User {
+  email: string;
+  // Outros campos do usuário, se houver
+}
+
+interface AuthState {
+  user: User | null;
+  isAuthenticated: boolean;
+}
+
+const initialState: AuthState = {
+  user: null,
+  isAuthenticated: false,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    login: (state, action) => {
-      // Lógica para atualizar o estado após o login
+    login(state, action: PayloadAction<User>) {
       state.user = action.payload;
       state.isAuthenticated = true;
+
+      // Salvar informações do usuário no localStorage
+      // localStorage.setItem('user', JSON.stringify(action.payload));
+      localStorage.setItem('isAuthenticated', 'true');
     },
-    logout: (state) => {
-      // Lógica para atualizar o estado após o logout
+    logout(state) {
       state.user = null;
       state.isAuthenticated = false;
+
+      // Limpar as informações do usuário do localStorage ao fazer logout
+      // localStorage.removeItem('user');
+      localStorage.removeItem('isAuthenticated');
     },
   },
 });

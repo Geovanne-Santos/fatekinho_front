@@ -8,6 +8,8 @@ import { Step3 } from "./Step3";
 import Car from "../../assets/car.png";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useRegister } from "../../hooks/useRegister";
+import CryptoJS from "crypto-js"; // Importe o crypto-js
 
 function getStepContent(step: number) {
   switch (step) {
@@ -29,13 +31,41 @@ export function Steps() {
   const [activeStep, setActiveStep] = useState(0);
   const steps = ["steps1", "steps2", "steps3"];
   const navigate = useNavigate();
+  const { mutateAsync: registerUser } = useRegister();
 
-  const onSubmit = (data) => {
-    console.log(JSON.stringify(data));
-    alert(JSON.stringify(data));
+  const onSubmit = async (data) => {
+    const hashedPassword = CryptoJS.SHA256(data.password).toString();
+
+    const body = {
+      name: data.name,
+      email: data.email,
+      tipo: true,
+      senha: hashedPassword,
+      idCliente: 1,
+    };
+    localStorage.setItem("user", JSON.stringify(body));
+
+    const user = {
+      email: data.email,
+      name: data.name,
+      senha: data.password,
+      idCliente: 1,
+    };
+
+    const response = await registerUser(user);
+    if (response.status === 200) {
+      navigate("/login");
+      toast.success("Usuário cadastrado com sucesso");
+    } else {
+      toast.error("Ocorreu um erro ao cadastrar usuário");
+    }
     handleNext();
-    navigate("/");
-    toast.success("Sucesso");
+  };
+
+  const tryParseInt = (value) => {
+    if (value === "") return NaN; // Ou outra manipulação que faça sentido para seu caso
+    const parsedValue = parseInt(value, 10);
+    return isNaN(parsedValue) ? NaN : parsedValue;
   };
 
   const validationSchema = [
@@ -45,9 +75,10 @@ export function Steps() {
       gender: string().required("Por favor, selecione seu gênero."),
       cep: string().required("Por favor, digite seu CEP."),
       rua: string().required("Por favor, digite sua rua."),
-      number: number().required(
-        "Por favor, digite o número da sua residência."
-      ),
+      number: number()
+        .transform(tryParseInt)
+        .typeError("Por favor, digite um número válido.")
+        .required("Por favor, digite o número da sua residência."),
       complemento: string(),
       bairro: string().required("Por favor, digite seu bairro."),
       city: string().required("Por favor, digite sua cidade."),
@@ -66,15 +97,17 @@ export function Steps() {
         .required("Por favor, confirme sua senha."),
     }),
     object().shape({
-      numberCreditCard: number().required(
-        "Por favor, digite o número do seu cartão de crédito."
-      ),
+      numberCreditCard: number()
+        .transform(tryParseInt)
+        .typeError("Por favor, digite um número válido.")
+        .required("Por favor, digite o número do seu cartão de crédito."),
       validateData: string().required(
         "Por favor, digite a data de validade do seu cartão de crédito."
       ),
-      cvv: number().required(
-        "Por favor, digite o código CVV do seu cartão de crédito."
-      ),
+      cvv: number()
+        .transform(tryParseInt)
+        .typeError("Por favor, digite um número válido para o CVV.")
+        .required("Por favor, digite o código CVV do seu cartão de crédito."),
     }),
   ];
 
@@ -85,7 +118,7 @@ export function Steps() {
     mode: "onChange",
   });
 
-  const { handleSubmit, reset, trigger } = methods;
+  const { handleSubmit, trigger } = methods;
 
   const handleNext = async () => {
     const isStepValid = await trigger();
@@ -97,11 +130,6 @@ export function Steps() {
 
   const handleBack = async () =>
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-
-  /*   const handleReset = () => {
-    setActiveStep(0);
-    reset();
-  }; */
 
   return (
     <FormProvider {...methods}>

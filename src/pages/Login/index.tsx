@@ -1,8 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Car from "../../assets/car.png";
 import { InferType, object, string } from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../../features/auth/authLogin"; // Importe a action de login do seu slice
+import { RootState } from "../../features/store"; // Importe o tipo RootState se necessário
+import { toast } from "react-toastify";
+import { useEffect } from "react";
+import { useLogin } from "../../hooks/useLogin";
 
 const loginSchema = object().shape({
   email: string().email("E-mail inválido").required("E-mail é obrigatório"),
@@ -18,6 +24,14 @@ const loginSchema = object().shape({
 type LoginType = InferType<typeof loginSchema>;
 
 export function Login() {
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
+  console.log(isAuthenticated);
+  const navigate = useNavigate();
+  const { mutateAsync: loginUser } = useLogin();
+
   const {
     register,
     handleSubmit,
@@ -27,9 +41,26 @@ export function Login() {
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = (data: LoginType) => {
-    console.log(data);
-    reset();
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+      toast.success("Usuário logado com sucesso");
+    }
+  }, [isAuthenticated, navigate]);
+
+  const onSubmit = async (data: LoginType) => {
+    const body = {
+      email: data.email,
+      senha: data.password,
+    };
+
+    const response = await loginUser(body);
+    if (response.success) {
+      dispatch(login(data));
+      reset();
+    } else {
+      toast.error(response.message);
+    }
   };
 
   return (
@@ -50,7 +81,9 @@ export function Login() {
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="flex flex-col">
-            <label htmlFor="email" className="font-semibold">Email:</label>
+            <label htmlFor="email" className="font-semibold">
+              Email:
+            </label>
             <input
               {...register("email")}
               type="email"
@@ -59,7 +92,9 @@ export function Login() {
             <p className="text-[#ED1836]">{errors.email?.message}</p>
           </div>
           <div className="flex flex-col">
-            <label htmlFor="password" className="font-semibold">Senha:</label>
+            <label htmlFor="password" className="font-semibold">
+              Senha:
+            </label>
             <input
               {...register("password")}
               type="password"
@@ -77,7 +112,10 @@ export function Login() {
           >
             Entrar
           </button>
-          <Link to={""} className="text-center text-[#FAAC0C] font-semibold mt-4">
+          <Link
+            to={""}
+            className="text-center text-[#FAAC0C] font-semibold mt-4"
+          >
             Ainda não tem conta? Cadastre-se
           </Link>
         </form>
