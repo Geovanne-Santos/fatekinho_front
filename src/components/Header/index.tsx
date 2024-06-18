@@ -2,11 +2,15 @@ import { Link, useNavigate } from "react-router-dom";
 import Fatekino from "../../assets/logo_real_ oficial1_branco 2.png";
 import Moedinha from "../../assets/moedinha.png";
 import { BurgerIcon } from "../../utils/BurguerIcon";
-import { logout } from "../../features/auth/authLogin";
+import { getUserId, logout } from "../../features/auth/authLogin";
+import { useSelector } from "react-redux";
+import { useGetFatecoins } from "../../api/controllers/fatecoins";
 
 export function Header({ isOpen, setIsOpen }: any) {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
   const navigate = useNavigate();
+  const id = useSelector(getUserId);
+  const { data } = useGetFatecoins(id || 0);
 
   // Obter os dados do usuário do localStorage e fazer o parsing para objeto JavaScript
   const userString = localStorage.getItem("user");
@@ -41,10 +45,10 @@ export function Header({ isOpen, setIsOpen }: any) {
           <div className="flex items-center gap-10">
             <div className="flex items-center gap-4">
               <img className="h-10" src={Moedinha} alt="Moedinha" />
-              <span className="text-lg">R$ 00,00</span>
+              <span className="text-lg">{data?.qtd || 0}</span>
             </div>
             <span>
-              <p className="text-lg font-semibold">{firstName.split(" ")[0]}</p>
+              <p className="text-lg font-semibold">{firstName?.split(" ")[0]}</p>
             </span>
             <span>
               <p className="text-lg text-red-600 cursor-pointer" onClick={handleLogout}>

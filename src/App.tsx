@@ -4,18 +4,23 @@ import { Header } from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
 import { useEffect, useRef, useState } from "react";
 import { Modal } from "./components/Modal";
-import { useGetFatecoins } from "./api/controllers/fatecoins";
+import { useGetFatecoins, useSalvarQtdeCoin } from "./api/controllers/fatecoins";
 import { Carregando } from "./components/Carregando";
+import { useSelector } from "react-redux";
+import { getUserId } from "./features/auth/authLogin";
 
 export function App() {
   const [isOpen, setIsOpen] = useState(true);
   const [isModalActive, setModalActive] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout>(null);
-  const { data } = useGetFatecoins(1);
+  const id = useSelector(getUserId);
+  const { data } = useGetFatecoins(id || 0);
+  const {mutate: salvarCoins} = useSalvarQtdeCoin()
 
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
   useEffect(() => {
     // Verifica se o usuário está autenticado no localStorage
-    const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+    
 
     if (!isAuthenticated) {
       // Configura o modal para aparecer após 3 segundos
@@ -31,13 +36,17 @@ export function App() {
     localStorage.setItem("player-money", JSON.stringify({money: data?.qtd || 0}))
   }, [data]);
 
+  useEffect(() => {
+    console.log(data, id)
+  }, [id]);
+
   const handleModalDesactive = () => {
     setModalActive(false);
     clearTimeout(timeoutRef.current);
   };
 
   return (
-    data ? <>
+    (data && isAuthenticated) || !isAuthenticated ? <>
       {isModalActive && (
         <Modal
           setModalActive={setModalActive}

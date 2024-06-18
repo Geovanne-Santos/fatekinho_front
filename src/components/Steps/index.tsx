@@ -37,22 +37,24 @@ export function Steps() {
     const hashedPassword = CryptoJS.SHA256(data.password).toString();
 
     const body = {
-      name: data.name,
-      email: data.email,
-      tipo: true,
-      senha: hashedPassword,
-      idCliente: 1,
+      usuario: {
+        email: data.email,
+        name: data.name,
+        senha: data.password,
+        tipo: true,
+        idCliente: 0,
+      },
+      cliente: {
+        nome: data.name,
+        cpf: data.cpf.replace("-", "").replaceAll(".", ""),
+        cep: data.cep.replace("-", ""),
+        numero: data.number,
+        data_nasc: new Date(),
+        complemento: data.complemento
+      }
     };
-    localStorage.setItem("user", JSON.stringify(body));
 
-    const user = {
-      email: data.email,
-      name: data.name,
-      senha: data.password,
-      idCliente: 1,
-    };
-
-    const response = await registerUser(user);
+    const response = await registerUser(body);
     if (response.status === 200) {
       navigate("/login");
       toast.success("Usuário cadastrado com sucesso");
@@ -62,7 +64,7 @@ export function Steps() {
     handleNext();
   };
 
-  const tryParseInt = (value) => {
+  const tryParseInt = (value: string) => {
     if (value === "") return NaN; // Ou outra manipulação que faça sentido para seu caso
     const parsedValue = parseInt(value, 10);
     return isNaN(parsedValue) ? NaN : parsedValue;
