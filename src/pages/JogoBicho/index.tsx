@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "../../components/Container";
 import { bichos, modalidades } from "./objetos";
 import { Label } from "../../components/Label";

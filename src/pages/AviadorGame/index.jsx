@@ -7,10 +7,15 @@ import { Carregando } from "../../components/Carregando";
 import mascote from "../../assets/mascote.svg";
 import coin from "../../assets/coin.svg";
 import { Link } from "react-router-dom";
+import { showAlert } from "./utils";
+import { Game } from "./classes/game";
+
 
 
 export function Aviator() {
     const [carregando, setCarregando] = useState(true)
+    const [value, setValue] = useState(1.00)
+    const [value2, setValue2] = useState(1.00)
     let declarado = false
     useEffect(() => {
         if(!declarado){
@@ -23,6 +28,36 @@ export function Aviator() {
         }
         
     }, []);
+
+    const formatarCampo = (v, b) => {
+        let nv = v.toString() ? v.toString() : v
+        console.log(typeof v, v)
+        if (nv.includes(".")) {
+            nv = nv.replace(".", "")
+            nv = nv.substr(0, nv.length - 2) + "." + nv.substr(nv.length - 2, nv.length - 1)
+        }
+        else {
+            nv = nv.substr(0, nv.length - 1) + "." + nv.substr(nv.length - 1, nv.length - 1) + "0"
+        }
+
+        let valor = parseFloat(nv)
+        if (b == 1)setValue(valor)
+        else setValue2(valor)
+
+    }
+    const MaisMenosBotao = (mais, b) => {
+        let total = b == 1 ? value : value2
+        total = parseFloat(total)
+        if (mais) total += 1
+        else if (!mais && (total - 1) < 1) return showAlert(
+            `O valor mínimo para aposta é ${Game.RULES.MINIMUM_VALUE_TO_BET}.`
+        );
+        else total -= 1
+
+        total = total.toFixed(2)
+        if (b == 1)setValue(total)
+        else setValue2(total)
+    }
 
     return (
 
@@ -132,7 +167,8 @@ export function Aviator() {
                                     >
                                         <input
                                             type="number"
-                                            value="1.00"
+                                            value={value}
+                                            onChange={(e) => formatarCampo(e.target.value,1)}
                                             step=".01"
                                             min="0.01"
                                             name=""
@@ -143,8 +179,7 @@ export function Aviator() {
                                         <div className="flex gap-1 px-2">
                                             <button
                                                 type="button"
-                                                data-button-update-bet="1"
-                                                data-bet-value-input="1"
+                                                onClick={() => MaisMenosBotao(true, 1)}
                                                 id="plus-one-btn"
                                                 className="flex items-center justify-center bg-gray-500 text-gray-800 rounded-full hover:brightness-125 hover:scale-105"
                                             >
@@ -156,8 +191,7 @@ export function Aviator() {
                                             </button>
                                             <button
                                                 type="button"
-                                                data-button-update-bet="-1"
-                                                data-bet-value-input="1"
+                                                onClick={() => MaisMenosBotao(false, 1)}
                                                 className="flex items-center justify-center bg-gray-500 text-gray-800 rounded-full hover:brightness-125 hover:scale-105"
                                             >
 
@@ -239,7 +273,8 @@ export function Aviator() {
                                     >
                                         <input
                                             type="number"
-                                            value="1.00"
+                                            value={value2}
+                                            onChange={(e) => formatarCampo(e.target.value,2)}
                                             step=".01"
                                             min="0.01"
                                             name=""
@@ -250,10 +285,10 @@ export function Aviator() {
                                         <div className="flex gap-1 px-2">
                                             <button
                                                 type="button"
-                                                data-button-update-bet="1"
-                                                data-bet-value-input="2"
+                                               
                                                 id="plus-one-btn"
                                                 className="flex items-center justify-center bg-gray-500 text-gray-800 rounded-full hover:brightness-125 hover:scale-105"
+                                                onClick={() => MaisMenosBotao(true, 2)}
                                             >
 
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4">
@@ -262,9 +297,9 @@ export function Aviator() {
                                             </button>
                                             <button
                                                 type="button"
-                                                data-button-update-bet="-1"
-                                                data-bet-value-input="2"
+                                            
                                                 className="flex items-center justify-center bg-gray-500 text-gray-800 rounded-full hover:brightness-125 hover:scale-105"
+                                                onClick={() => MaisMenosBotao(false, 2)}
                                             >
 
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4">

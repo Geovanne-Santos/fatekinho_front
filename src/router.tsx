@@ -14,7 +14,10 @@ import { JogoBicho } from "./pages/JogoBicho";
 import { ComoJogarAviator } from "./pages/AviadorGame/comoJogar";
 import { Aviator } from "./pages/AviadorGame";
 import {Blackjack} from "./pages/blackjack";
-
+import { RoosterFight } from "./pages/RoosterFight";
+import { ComoJogarRoosterFight } from "./pages/RoosterFight/comoJogar";
+import { MineSweeper } from "./pages/minesweeper2";
+import { ComoJogarMineSweeper } from "./pages/minesweeper2/comoJogar";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -52,10 +55,10 @@ export const router = createBrowserRouter([
         path: "/game/caca-niquel",
         element: <CacaNiquel />,
       },
-      {
-        path: "/game/blackjack",
-        element: <Blackjack />,
-      },
+        {
+            path: "/game/blackjack",
+            element: <Blackjack />,
+        },
       {
         path: "/game/aviator/como-jogar",
         element: <ComoJogarAviator />,
@@ -64,6 +67,10 @@ export const router = createBrowserRouter([
         path: "/game/minesweeper",
         element: <Minesweeper />,
       },
+        {
+            path: "/game/minesweeper/como-jogar",
+            element: <ComoJogarMineSweeper />,
+        },
       {
         path: "/game/jogo-bicho",
         element: <JogoBicho />,
@@ -71,7 +78,15 @@ export const router = createBrowserRouter([
       {
         path: "/game/aviator",
         element: <Aviator/>
-      }
+      },
+        {
+            path: "/game/rooster-fight",
+            element: <RoosterFight/>
+        },
+        {
+            path: "/game/rooster-fight/como-jogar",
+            element: <ComoJogarRoosterFight />,
+        },
     ],
   },
 ]);

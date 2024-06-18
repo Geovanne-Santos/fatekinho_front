@@ -1,5 +1,4 @@
 import { Chart } from "./classes/chart.js";
-import { Game } from "./classes/game.js";
 import { RoundsHistory } from "./classes/roundsHistory.js";
 import { Player } from "./classes/player.js";
 import { Round } from "./classes/round.js";
@@ -11,6 +10,7 @@ import {
     showAlert,
     sleep,
 } from "./utils.js";
+import { Game } from "./classes/game.js";
 
 export function AviadorLogica() {
 
@@ -225,7 +225,7 @@ export function AviadorLogica() {
                     // -- Verificar se o valor da aposta é válido
                     if (isValidValueToBet(bet) == false) {
                         showAlert(
-                            `O valor mínimo para aposta é ${game.RULES.MINIMUM_VALUE_TO_BET}.`
+                            `O valor mínimo para aposta é ${Game.RULES.MINIMUM_VALUE_TO_BET}.`
                         );
                         break;
                     }
