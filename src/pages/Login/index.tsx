@@ -41,12 +41,9 @@ export function Login() {
     resolver: yupResolver(loginSchema),
   });
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/");
-      toast.success("Usuário logado com sucesso");
-    }
-  }, [isAuthenticated, navigate]);
+  /*   useEffect(() => {
+    
+  }, [isAuthenticated, navigate]); */
 
   const onSubmit = async (data: LoginType) => {
     const body = {
@@ -56,9 +53,10 @@ export function Login() {
 
     const response = await loginUser(body);
     if (response.success) {
-      console.log(response)
+      console.log(response);
       dispatch(login(response.user));
-      
+      navigate("/");
+      toast.success("Usuário logado com sucesso");
       reset();
     } else {
       toast.error(response.message);
@@ -66,7 +64,10 @@ export function Login() {
   };
 
   return (
-    <section className="flex justify-center items-center w-full h-full bg-coins" style={{height: "100vh"}}>
+    <section
+      className="flex justify-center items-center w-full h-full bg-coins"
+      style={{ height: "100vh" }}
+    >
       <div
         className="flex flex-col items-center justify-center w-2/5 h-3/6 bg-[#FFFFFF] rounded-3xl shadow-2xl border-8 border-[#FAF755]"
         style={{

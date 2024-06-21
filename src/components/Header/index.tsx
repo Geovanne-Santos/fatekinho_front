@@ -19,6 +19,7 @@ export function Header({ isOpen, setIsOpen }: any) {
 
   const handleLogout = () => {
     logout();
+    localStorage.removeItem("player-money");
     localStorage.removeItem("user");
     localStorage.removeItem("isAuthenticated");
     navigate("/");

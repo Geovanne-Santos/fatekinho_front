@@ -28,16 +28,11 @@ const authSlice = createSlice({
       // Salvar informações do usuário no localStorage
       // localStorage.setItem('user', JSON.stringify(action.payload));
       localStorage.setItem('isAuthenticated', 'true');
-      console.log(action.payload)
       localStorage.setItem('user', JSON.stringify(action.payload));
     },
     logout(state) {
       state.user = null;
       state.isAuthenticated = false;
-
-      // Limpar as informações do usuário do localStorage ao fazer logout
-      // localStorage.removeItem('user');
-      localStorage.removeItem('isAuthenticated');
     },
 
   },
