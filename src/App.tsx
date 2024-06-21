@@ -71,7 +71,6 @@ export function App() {
   };
 
   const handleSaveCoins = async () => {
-    // Verifica se data está definido e faz a chamada para salvar as moedas
     if (data) {
       await salvarCoins(data);
     }
